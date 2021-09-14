@@ -208,6 +208,13 @@
             float: none;
         }
 
+        /* SCALE RULER */
+
+        .mapboxgl-ctrl-scale {
+            left: 160px;
+            position: absolute;
+        }
+
         /* MOBILE FIRST */
         /* Larger than mobile */
         @media (min-width: 400px) {}
@@ -330,14 +337,14 @@
             map.addSource('NIFC Polygons', {
                 type: 'geojson',
                 // Use a URL for the value for the `data` property.
-                data: '/nifc_polygons.geojson'
+                data: 'nifc_polygons.geojson'
             });
 
             // https://data-nifc.opendata.arcgis.com/search?tags=Category%2C2021_wildlandfire_opendata
             map.addSource('NIFC Points', {
                 type: 'geojson',
                 // Use a URL for the value for the `data` property.
-                data: '/nifc_points.geojson'
+                data: 'nifc_points.geojson'
             });
 
             map.addSource('NASA ALL', {
@@ -491,6 +498,15 @@
             trackUserLocation: true,
             showUserHeading: true
         }));
+
+        // Scale ruler
+        const scale = new mapboxgl.ScaleControl({
+            maxWidth: 80,
+            unit: 'imperial'
+        });
+        map.addControl(scale);
+
+        scale.setUnit('imperial');
 
         // TOGGLING LAYERS
         // After the last frame rendered before the map enters an "idle" state.
