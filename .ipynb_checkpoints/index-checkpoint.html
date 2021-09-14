@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Display a map on a webpage</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
+        type="text/css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js"></script>
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ2xldmluZXMiLCJhIjoiY2tyeTZ5NmxtMDgwejJ3cWc3MXd0dWU2eSJ9.qg9-OEytHcQ07Q2yIUcPoQ';
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+            center: [-119.5788478538649, 36.498509688945575], // starting position [lng, lat]
+            zoom: 1 // starting zoom
+        });
+
+        map.on('load', () => {
+
+            // Add sources
+
+            //https://www.fire.ca.gov/incidents
+            map.addSource('CalFire', {
+                type: 'geojson',
+                // Use a URL for the value for the `data` property.
+                data: '/calfire/calfire-geojson.json'
+                // data: 'http://www.fire.ca.gov/umbraco/api/IncidentApi/GeoJsonList?inactive=false'
+                // data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson'
+            });
+
+            //https://data-nifc.opendata.arcgis.com/search?tags=Category%2C2021_wildlandfire_opendata
+            map.addSource('NIFC', {
+                type: 'geojson',
+                // Use a URL for the value for the `data` property.
+                data: '/nifc/WFIGS_-_Current_Wildland_Fire_Perimeters.geojson'
+            });
+
+            // Add a new layer to visualize the nifc polygon.
+            map.addLayer({
+                'id': 'nifc',
+                'type': 'fill',
+                'source': 'NIFC', // reference the data source
+                'layout': {},
+                'paint': {
+                    'fill-color': 'orange', // blue color fill
+                    'fill-opacity': 0.5
+                }
+            });
+
+            // Add a black outline around the nifc polygon.
+            map.addLayer({
+                'id': 'outline',
+                'type': 'line',
+                'source': 'NIFC',
+                'layout': {},
+                'paint': {
+                    'line-color': '#fff',
+                    'line-width': 1
+                }
+            });
+
+            // Add CalFire points
+            map.addLayer({
+                'id': 'calfire-layer',
+                'type': 'circle',
+                'source': 'CalFire',
+                'paint': {
+                    'circle-radius': 8,
+                    'circle-stroke-width': 1,
+                    'circle-color': 'orange',
+                    'circle-stroke-color': 'white'
+                }
+            });
+
+        });
+
+        setTimeout(function () {
+            map.flyTo({
+                zoom: 6,
+                center: [-119.5788478538649, 36.498509688945575]
+            }), 3000
+        })
+
+        //CONTROLS
+
+        map.addControl(
+            new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl
+            })
+        );
+
+        const nav = new mapboxgl.NavigationControl();
+        map.addControl(nav, 'top-right');
+
+        map.addControl(new mapboxgl.FullscreenControl({
+            container: document.querySelector('body')
+        }));
+
+        map.addControl(new mapboxgl.GeolocateControl({
+            positionOptions: { enableHighAccuracy: true },
+            trackUserLocation: true,
+            showUserHeading: true
+        }));
+
+
+
+
+    </script>
+
+</body>
+
+</html>
