@@ -176,6 +176,7 @@
             line-height: 1em;
             position: absolute;
             bottom: 190px;
+            left: 0;
             padding: 10px;
             z-index: 1;
             font-family: 'Times New Roman', Times, serif;
@@ -228,8 +229,8 @@
                 font-weight: 800;
                 line-height: 1em;
                 position: absolute;
-                top: 0px;
-                /* left: 10px; */
+                top: 0;
+                left: 0;
                 padding: 10px;
                 z-index: 1;
                 font-family: 'Times New Roman', Times, serif;
@@ -311,7 +312,7 @@
 
             // Update last updated section
             var client = new XMLHttpRequest();
-            client.open('GET', '/last-updated.txt');
+            client.open('GET', 'last-updated.txt');
             client.onload = function () {
                 document.getElementById('lastUpdated').innerHTML += client.responseText;
             }
