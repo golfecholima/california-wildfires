@@ -1,0 +1,224 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+header > h1 {
+  font-weight: 800;
+  line-height: 1em;
+  position: absolute;
+  bottom: 190px;
+  left: 0;
+  padding: 10px;
+  z-index: 1;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2.2em;
+  margin: 0;
+  color: #000000;
+  width: 0;
+}
+
+button.about {
+  position: absolute;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  text-decoration: underline;
+  bottom: 170px;
+  padding-left: 10px;
+  cursor: pointer;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1em;
+  text-align: left;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin: -10px -2px 0 0;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+p#lastUpdated {
+  text-align: center;
+  margin: 0;
+  font-family: "Times New Roman", Times, sans-serif;
+  font-size: 0.8em;
+  font-weight: 800;
+}
+
+#menu {
+  background: #b4b4b4;
+  position: absolute;
+  z-index: 1;
+  bottom: 40px;
+  left: 10px;
+  width: 150px;
+  border-radius: 3px;
+  font-family: "Open Sans", sans-serif;
+}
+
+#menu button {
+  font-size: 13px;
+  font-weight: bold;
+  background-color: #b4b4b4;
+  color: #ffffff;
+  display: block;
+  margin: 0;
+  padding: 0;
+  padding: 10px;
+  width: 150px;
+  text-decoration: none;
+  border: none;
+  text-align: left;
+}
+
+#menu button:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+#menu button:last-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+#menu button:hover {
+  background-color: #adadad;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#menu button.active {
+  background-color: #404040;
+  color: #ffffff;
+}
+
+#menu button.active:hover {
+  background: #606060;
+  color: #ffffff;
+}
+
+#menu button.active:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+#menu button.active:hover:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+#menu button.active:last-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+#menu button.active:hover:last-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.legend {
+  position: relative;
+  top: 4px;
+  left: 10px;
+}
+
+.mapboxgl-ctrl-geocoder,
+.mapboxgl-ctrl-geocoder {
+  position: absolute;
+  margin: 0;
+  float: none;
+}
+
+.mapboxgl-ctrl-scale {
+  left: 160px;
+  position: absolute;
+}
+
+/* Larger than mobile */
+/* Larger than phablet */
+/* Larger than tablet */
+@media (min-width: 750px) {
+  header > h1 {
+    font-weight: 800;
+    line-height: 1em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 1;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 3.2em;
+    margin: 0;
+    color: #000000;
+    text-shadow: 1px 1px 6px #999999;
+    width: 0;
+  }
+
+  button.about {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    text-decoration: underline;
+    top: 170px;
+    padding-left: 10px;
+    cursor: pointer;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1em;
+    text-align: left;
+  }
+
+  .mapboxgl-ctrl-geocoder,
+.mapboxgl-ctrl-geocoder {
+    position: absolute;
+    top: 190px;
+    margin: 0;
+    float: none;
+  }
+}
+/* Larger than desktop */
+/* Larger than Desktop HD */
+
+/*# sourceMappingURL=style.processed.css.map */
