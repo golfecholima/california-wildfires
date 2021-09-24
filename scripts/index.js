@@ -43,9 +43,9 @@ map.on('load', () => {
 
     // https://data-nifc.opendata.arcgis.com/search?tags=Category%2C2021_wildlandfire_opendata
     map.addSource('NIFC Polygons', {
-        type: 'geojson',
+        type: 'vector',
         // Use a URL for the value for the `data` property.
-        data: 'gis/nifc_polygons.geojson'
+        url: 'mapbox://calnewsroom.nifc-polygons-test0'
     });
 
     // https://data-nifc.opendata.arcgis.com/search?tags=Category%2C2021_wildlandfire_opendata
@@ -68,6 +68,7 @@ map.on('load', () => {
         'id': 'Fire perimeters',
         'type': 'fill',
         'source': 'NIFC Polygons', // reference the data source
+        'source-layer': 'nifc-polygons-test0',
         'layout': {
             // Make the layer visible by default.
             'visibility': 'visible'
