@@ -1,8 +1,8 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsbmV3c3Jvb20iLCJhIjoiY2ttYzhwZ2wyMDVobTJwbXhiaG81bXpzdSJ9.xnkn2BlbVZvFfGukyV_-0g';
 
 const bounds = [
-    [-199.284547, 14.755733], // Southwest coordinates
-    [-35.323822, 75.518426] // Northeast coordinates
+    [-179.691800, 0.572312], // Southwest coordinates 
+    [-31.805816, 76.179739] // Northeast coordinates 
 ];
 
 const map = new mapboxgl.Map({
@@ -11,8 +11,8 @@ const map = new mapboxgl.Map({
     center: [-119.5788478538649, 36.498509688945572], // starting position [lng, lat]
     maxZoom: 13, // sets max zoom
     minZoom: 2, // sets min zoom
-    zoom: 1 // starting zoom
-    // maxBounds: bounds
+    zoom: 2, // starting zoom
+    maxBounds: bounds
 });
 
 map.on('load', () => {
@@ -45,20 +45,20 @@ map.on('load', () => {
     map.addSource('NIFC Polygons', {
         type: 'geojson',
         // Use a URL for the value for the `data` property.
-        data: 'nifc_polygons.geojson'
+        data: 'gis/nifc_polygons.geojson'
     });
 
     // https://data-nifc.opendata.arcgis.com/search?tags=Category%2C2021_wildlandfire_opendata
     map.addSource('NIFC Points', {
         type: 'geojson',
         // Use a URL for the value for the `data` property.
-        data: 'nifc_points.geojson'
+        data: 'gis/nifc_points.geojson'
     });
 
     map.addSource('NASA ALL', {
         type: 'geojson',
         // Use a URL for the value for the `data` property.
-        data: 'nasa_all.geojson'
+        data: 'gis/nasa_all.geojson'
     });
 
     // Add layers w/ styling
@@ -185,6 +185,7 @@ if (width >= '1000') {
 map.addControl(
     new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
+        countries: 'us ca',
         mapboxgl: mapboxgl
     }),
     'top-left',
