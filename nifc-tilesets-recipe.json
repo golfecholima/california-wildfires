@@ -1,0 +1,10 @@
+{
+    "version": 1,
+    "layers": {
+        "nifc-polygons": {
+            "source": "mapbox://tileset-source/calnewsroom/nifc-polygons",
+            "minzoom": 2,
+            "maxzoom": 12
+        }
+    }
+}
