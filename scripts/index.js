@@ -27,20 +27,6 @@ map.on('load', () => {
 
     // Add sources
 
-    // 
-    // map.addSource('AirNow', {
-    //     type: 'geojson',
-    //     // Use a URL for the value for the `data` property.
-    //     data: '/airnow.geojson'
-    // });
-
-    // // https://www.fire.ca.gov/incidents
-    // map.addSource('CalFire', {
-    //     type: 'geojson',
-    //     // Use a URL for the value for the `data` property.
-    //     data: '/calfire.geojson'
-    // });
-
     // https://data-nifc.opendata.arcgis.com/search?tags=Category%2C2021_wildlandfire_opendata
     map.addSource('NIFC Polygons', {
         type: 'vector',
@@ -92,19 +78,6 @@ map.on('load', () => {
         }
     });
 
-    // // Add CalFire points
-    // map.addLayer({
-    //     'id': 'Fire origins',
-    //     'type': 'symbol',
-    //     'source': 'CalFire',
-    //     'layout': {
-    //         // Make the layer visible by default.
-    //         'visibility': 'visible',
-    //         'icon-image': 'level-crossing'
-    //         // 'icon-size': .1
-    //     }
-    // });
-
     // Add all NASA points
     map.addLayer({
         'id': 'Hotspots',
@@ -127,28 +100,6 @@ map.on('load', () => {
             'circle-opacity': 0.5
         }
     });
-
-    // Add AirNow points
-    // map.addLayer({
-    //     'id': 'Air quality',
-    //     'type': 'circle',
-    //     'source': 'AirNow',
-    //     'layout': {
-    //         // Make the layer invisible by default.
-    //         'visibility': 'none'
-    //     },
-    //     'paint': {
-    //         'circle-radius': {
-    //             // Make circles larger as the user zooms from z12 to z22.
-    //             'base': 1.75,
-    //             'stops': [
-    //                 [9, 2],
-    //                 [18, 180]
-    //             ]
-    //         },
-    //         'circle-color': 'pink',
-    //     }
-    // });
 
 });
 
@@ -241,21 +192,16 @@ map.on('idle', () => {
 
         // Create a button.
         const button = document.createElement('button');
+        var on = '<span class="material-icons on">check_circle_outline</span>';
+        var off = '<span class="material-icons off">highlight_off</span>';
         button.id = layer;
         button.href = '#';
-        button.textContent = layer;
-        button.innerHTML += svg;
-        button.className = 'active';
-        // button.setAttribute('type', 'button');
-        // button.setAttribute('data-action', 'aria-switch');
-        // button.setAttribute('aria-labelledby', 'toggle_label');
-        // button.setAttribute('aria-labelledby', 'toggle_label');
-        // button.setAttribute('aria-checked', 'true');
-        // button.setAttribute('role', 'switch');                
+        button.innerHTML +=  on + layer + svg;
+        button.className = 'active';           
 
         // Show or hide layer when the toggle is clicked.
         button.onclick = function (e) {
-            const clickedLayer = this.textContent;
+            const clickedLayer = this.id;
             e.preventDefault();
             e.stopPropagation();
 
@@ -268,8 +214,10 @@ map.on('idle', () => {
             if (visibility === 'visible') {
                 map.setLayoutProperty(clickedLayer, 'visibility', 'none');
                 this.className = '';
+                this.innerHTML = off+ layer + svg;
             } else {
                 this.className = 'active';
+                this.innerHTML = on + layer + svg;
                 map.setLayoutProperty(
                     clickedLayer,
                     'visibility',

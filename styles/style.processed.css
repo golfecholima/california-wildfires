@@ -4,6 +4,14 @@ body {
   padding: 0;
 }
 
+p {
+  font: 400 1em/1.1 "Noto Serif", serif;
+}
+
+h2 {
+  font: 700 2em/1 "Noto Serif", serif;
+}
+
 #map {
   position: absolute;
   top: 0;
@@ -87,22 +95,22 @@ p#lastUpdated {
   z-index: 1;
   bottom: 40px;
   left: 10px;
-  width: 150px;
+  width: 160px;
   border-radius: 3px;
 }
 
 #menu button {
   background-color: #b4b4b4;
-  color: #ffffff;
+  color: lightgray;
   display: block;
   margin: 0;
   padding: 0;
   padding: 5px;
-  width: 150px;
+  width: 160px;
   text-decoration: none;
   border: none;
   text-align: left;
-  font: 500 0.9em/1 "Roboto", sans-serif;
+  font: 600 0.9em/1 "Roboto", sans-serif;
 }
 
 #menu button:first-child {
@@ -149,6 +157,20 @@ p#lastUpdated {
 #menu button.active:hover:last-child {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+
+#menu button span.on {
+  color: #00d000;
+  padding-right: 5px;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+#menu button span.off {
+  color: lightgray;
+  padding-right: 5px;
+  font-size: 1em;
+  font-weight: 400;
 }
 
 .legend {
@@ -209,12 +231,12 @@ p#lastUpdated {
 
   #menu button {
     background-color: #b4b4b4;
-    color: #ffffff;
+    color: lightgray;
     display: block;
     margin: 0;
     padding: 0;
     padding: 10px;
-    width: 150px;
+    width: 160px;
     text-decoration: none;
     border: none;
     text-align: left;
