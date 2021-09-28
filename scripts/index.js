@@ -192,8 +192,8 @@ map.on('idle', () => {
 
         // Create a button.
         const button = document.createElement('button');
-        var on = '<span class="material-icons on">check_circle_outline</span>';
-        var off = '<span class="material-icons off">highlight_off</span>';
+        var on = '<span class="material-icons on">check</span>';
+        var off = '<span class="material-icons off">close</span>';
         button.id = layer;
         button.href = '#';
         button.innerHTML +=  on + layer + svg;
