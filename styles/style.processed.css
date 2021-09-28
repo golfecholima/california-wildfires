@@ -184,6 +184,7 @@ p#lastUpdated {
   position: absolute;
   margin: 0;
   float: none;
+  font: 400 1.3em/1 "Roboto Condensed", sans-serif;
 }
 
 .mapboxgl-ctrl-scale {
