@@ -300,14 +300,10 @@ map.on('click', 'Fire perimeters', function (e) {
         map.fitBounds(bbox, { padding: 40 });
     }
 
-
-
 });
 
 // Show a popup when fire origins are clicked and center and zoom to the area
 map.on('click', 'Fire origins', function (e) {
-
-    console.log('WOOT!')
 
     // IRWINS variables
     var fire_name = e.features[0].properties.IncidentName.toUpperCase()
@@ -345,7 +341,7 @@ map.on('click', 'Fire origins', function (e) {
         .addTo(map);
 
     map.flyTo({
-        zoom: 9,
+        // zoom: 9,
         center: e.features[0].geometry.coordinates
     })
 
