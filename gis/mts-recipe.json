@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "layers": {
+    "nifc-poly-test": {
+      "source": "mapbox://tileset-source/calnewsroom/nifc-poly-test-src",
+      "minzoom": 2,
+      "maxzoom": 10
+    }
+  }
+}

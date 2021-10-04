@@ -17,13 +17,21 @@ const map = new mapboxgl.Map({
 
 map.on('load', () => {
 
-    // Update last updated section
+    // Update the last updated section of about
     var client = new XMLHttpRequest();
     client.open('GET', 'last-updated.txt');
     client.onload = function () {
         document.getElementById('lastUpdated').innerHTML += client.responseText;
     }
     client.send();
+
+    // Add icons
+
+    map.loadImage('./assets/outline_local_fire_department_black_18dp_2x.png', (error, image) => {
+        if (error) throw error;
+        // add image to the active style and make it SDF-enabled
+        map.addImage('fire', image, { sdf: true });
+    });
 
     // Add sources
 
@@ -65,19 +73,6 @@ map.on('load', () => {
         }
     });
 
-    // Add NIFC fire origin points
-    map.addLayer({
-        'id': 'Fire origins',
-        'type': 'symbol',
-        'source': 'NIFC Points',
-        'layout': {
-            // Make the layer visible by default.
-            'visibility': 'visible',
-            'icon-image': 'level-crossing'
-            // 'icon-size': .1
-        }
-    });
-
     // Add all NASA points
     map.addLayer({
         'id': 'Hotspots',
@@ -98,6 +93,22 @@ map.on('load', () => {
             },
             'circle-color': '#811005',
             'circle-opacity': 0.5
+        }
+    });
+
+    // Add NIFC fire origin points
+    map.addLayer({
+        'id': 'Fire origins',
+        'type': 'symbol',
+        'source': 'NIFC Points',
+        'layout': {
+            // Make the layer visible by default.
+            'visibility': 'visible',
+            'icon-image': 'fire',
+            'icon-size': .5
+        },
+        'paint': {
+            'icon-color': 'darkred'
         }
     });
 
@@ -196,8 +207,8 @@ map.on('idle', () => {
         var off = '<span class="material-icons off">close</span>';
         button.id = layer;
         button.href = '#';
-        button.innerHTML +=  on + layer + svg;
-        button.className = 'active';           
+        button.innerHTML += on + layer + svg;
+        button.className = 'active';
 
         // Show or hide layer when the toggle is clicked.
         button.onclick = function (e) {
@@ -214,7 +225,7 @@ map.on('idle', () => {
             if (visibility === 'visible') {
                 map.setLayoutProperty(clickedLayer, 'visibility', 'none');
                 this.className = '';
-                this.innerHTML = off+ layer + svg;
+                this.innerHTML = off + layer + svg;
             } else {
                 this.className = 'active';
                 this.innerHTML = on + layer + svg;
@@ -249,102 +260,124 @@ map.on('mouseleave', 'Fire origins', () => {
     map.getCanvas().style.cursor = ''
 })
 
-// Show a popup when fire perimeters are clicked and zoom to the area
-map.on('click', 'Fire perimeters', function (e) {
+map.on('click', function (e) {
 
-    // IRWINS variables
-    var fire_name = e.features[0].properties.poly_IncidentName.toUpperCase()
-    var cost = 'Unknown'
-    var acres = 'Unknown'
-    var contained = 'Unknown'
+    let f = map.queryRenderedFeatures(e.point, { layers: ['Fire origins', 'Fire perimeters'] });
 
-    if (e.features[0].properties.irwin_PercentContained >= 0) {
-        console.log(fire_name)
-        console.log(e.features[0].properties.irwin_PercentContained)
-        contained = e.features[0].properties.irwin_PercentContained + '%'
+    if (f.length) {
+        if (f[0].properties.IncidentName) { // topmost feature
+            console.log(f[0].properties.IncidentName)
+
+            const poly_features = map.querySourceFeatures('NIFC Polygons', {
+                'sourceLayer': 'nifc-polygons-test0'
+            });
+
+            var irwinid = f[0].properties.IrwinID
+
+            for (let i = 0; i < poly_features.length; i++) {
+
+                var poly_id = poly_features[i].properties.irwin_IrwinID
+
+                if (irwinid === poly_id) {
+                    var fire_name = poly_features[i].properties.poly_IncidentName.toUpperCase()
+                    var cost = 'Unknown'
+                    var acres = 'Unknown'
+                    var contained = 'Unknown'
+
+                    console.log(fire_name + ': ' + irwinid + ' ' + poly_id);
+
+                    if (poly_features[i].properties.irwin_PercentContained >= 0) {
+                        console.log(fire_name)
+                        console.log(poly_features[i].properties.irwin_PercentContained)
+                        contained = poly_features[i].properties.irwin_PercentContained + '%'
+                    }
+
+                    if (poly_features[i].properties.irwin_CalculatedAcres >= 0) {
+                        console.log(fire_name)
+                        console.log(poly_features[i].properties.irwin_CalculatedAcres)
+                        acres = Math.round(poly_features[i].properties.irwin_CalculatedAcres)
+                    }
+
+                    if (poly_features[i].properties.irwin_EstimatedCostToDate >= 0) {
+                        console.log(fire_name)
+                        console.log(poly_features[i].properties.irwin_EstimatedCostToDate)
+                        cost = '$' + Math.round(poly_features[i].properties.irwin_EstimatedCostToDate).toLocaleString()
+                    }
+
+                    if (fire_name == null || fire_name == 'N/A') {
+                        fire_name = 'Unknown';
+                    }
+
+                    popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres.toLocaleString() + '<br/>' + 'Cost: ' + cost;
+
+                    new mapboxgl.Popup()
+                        .setLngLat(e.lngLat)
+                        .setHTML(popup_html)
+                        .addTo(map)
+
+                    // map.easeTo({
+                    //     // zoom: 9,
+                    //     center: f[0].geometry.coordinates
+                    // })
+
+                    var bbox = turf.extent(poly_features[i].geometry);
+
+                    if (window.innerHeight <= '800') {
+                        map.fitBounds(bbox, {
+                            padding:
+                                { top: 40, bottom: 300, left: 40, right: 40 }
+                        });
+                    } else {
+                        map.fitBounds(bbox, { padding: 40 });
+                    }
+
+                    break;
+                }
+            }
+
+        } else {
+            console.log(f[0].properties.poly_IncidentName)
+
+            var fire_name = f[0].properties.poly_IncidentName.toUpperCase()
+            var cost = 'Unknown'
+            var acres = 'Unknown'
+            var contained = 'Unknown'
+
+            if (f[0].properties.irwin_PercentContained >= 0) {
+                contained = f[0].properties.irwin_PercentContained + '%'
+            }
+
+            if (f[0].properties.irwin_CalculatedAcres >= 0) {
+                acres = Math.round(f[0].properties.irwin_CalculatedAcres)
+            }
+
+            if (f[0].properties.irwin_EstimatedCostToDate >= 0) {
+                cost = '$' + Math.round(f[0].properties.irwin_EstimatedCostToDate).toLocaleString()
+            }
+
+            if (fire_name == null || fire_name == 'N/A') {
+                fire_name = 'Unknown';
+            }
+
+            popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres.toLocaleString() + '<br/>' + 'Cost: ' + cost;
+
+            new mapboxgl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML(popup_html)
+                .addTo(map);
+
+            var bbox = turf.extent(f[0].geometry);
+
+            if (window.innerHeight <= '800') {
+                map.fitBounds(bbox, {
+                    padding:
+                        { top: 40, bottom: 300, left: 40, right: 40 }
+                });
+            } else {
+                map.fitBounds(bbox, { padding: 40 });
+            }
+        }
     }
-
-    if (e.features[0].properties.irwin_CalculatedAcres >= 0) {
-        console.log(fire_name)
-        console.log(e.features[0].properties.irwin_CalculatedAcres)
-        acres = Math.round(e.features[0].properties.irwin_CalculatedAcres)
-    }
-
-    if (e.features[0].properties.irwin_EstimatedCostToDate >= 0) {
-        console.log(fire_name)
-        console.log(e.features[0].properties.irwin_EstimatedCostToDate)
-        cost = '$' + Math.round(e.features[0].properties.irwin_EstimatedCostToDate).toLocaleString()
-    }
-
-    if (fire_name == null || fire_name == 'N/A') {
-        fire_name = 'Unknown';
-    }
-
-    popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres.toLocaleString() + '<br/>' + 'Cost: ' + cost;
-
-    new mapboxgl.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(popup_html)
-        .addTo(map);
-
-    var bbox = turf.extent(e.features[0].geometry);
-
-    if (window.innerHeight <= '800') {
-        console.log(bbox);
-        map.fitBounds(bbox, {
-            padding:
-                { top: 40, bottom: 300, left: 40, right: 40 }
-        });
-    } else {
-        console.log(bbox);
-        map.fitBounds(bbox, { padding: 40 });
-    }
-
-});
-
-// Show a popup when fire origins are clicked and center and zoom to the area
-map.on('click', 'Fire origins', function (e) {
-
-    // IRWINS variables
-    var fire_name = e.features[0].properties.IncidentName.toUpperCase()
-    var cost = 'Unknown'
-    var acres = 'Unknown'
-    var contained = 'Unknown'
-
-    if (e.features[0].properties.PercentContained >= 0) {
-        console.log(fire_name)
-        console.log(e.features[0].properties.PercentContained)
-        contained = e.features[0].properties.PercentContained + '%'
-    }
-
-    if (e.features[0].properties.CalculatedAcres >= 0) {
-        console.log(fire_name)
-        console.log(e.features[0].properties.CalculatedAcres)
-        acres = Math.round(e.features[0].properties.CalculatedAcres)
-    }
-
-    if (e.features[0].properties.EstimatedCostToDate >= 0) {
-        console.log(fire_name)
-        console.log(e.features[0].properties.EstimatedCostToDate)
-        cost = '$' + Math.round(e.features[0].properties.EstimatedCostToDate).toLocaleString()
-    }
-
-    if (fire_name == null || fire_name == 'N/A') {
-        fire_name = 'Unknown';
-    }
-
-    popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres.toLocaleString() + '<br/>' + 'Cost: ' + cost;
-
-    new mapboxgl.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(popup_html)
-        .addTo(map);
-
-    map.flyTo({
-        // zoom: 9,
-        center: e.features[0].geometry.coordinates
-    })
-
 });
 
 // ABOUT MODAL
