@@ -264,11 +264,13 @@ map.on('click', function (e) {
 
     if (f.length) { // Needed to avoid duplicate popups for origin points that fall on top of polygons
         if (f[0].properties.IncidentName) { // Points - Fire origins section
-            console.log(f[0].properties.IncidentName)
 
             const poly_features = map.querySourceFeatures('NIFC Polygons', {
                 'sourceLayer': 'nifc-polygons-test0'
             });
+
+            // // Query all rendered features from a single layer
+            // const poly_features = map.queryRenderedFeatures({ layers: ['Fire perimeters'] });
 
             var irwinid = f[0].properties.IrwinID
 
@@ -277,12 +279,14 @@ map.on('click', function (e) {
                 var poly_id = poly_features[i].properties.irwin_IrwinID
 
                 if (irwinid === poly_id) {
+                    var mp = turf.multiPolygon(poly_features[i].geometry)
+                    var bbox = turf.bbox(mp.geometry.coordinates);
+                    console.log(poly_features[i].geometry)
+
                     var fire_name = poly_features[i].properties.poly_IncidentName.toUpperCase()
                     var cost = 'Unknown'
                     var acres = 'Unknown'
                     var contained = 'Unknown'
-
-                    console.log(fire_name + ': ' + irwinid + ' ' + poly_id);
 
                     if (poly_features[i].properties.irwin_PercentContained >= 0) {
                         contained = poly_features[i].properties.irwin_PercentContained + '%'
@@ -307,11 +311,6 @@ map.on('click', function (e) {
                         .setHTML(popup_html)
                         .addTo(map)
 
-                    var mp = turf.multiPolygon(poly_features[i].geometry)
-                    var bbox = turf.bbox(mp.geometry.coordinates);
-
-                    console.log(poly_features[i].geometry)
-
                     if (window.innerHeight <= '700') {
                         map.fitBounds(bbox, {
                             padding:
@@ -329,7 +328,9 @@ map.on('click', function (e) {
 
         } else { // Polys - Fire perimeters section
 
-            console.log(f[0].properties.poly_IncidentName)
+            var mp = turf.multiPolygon(f[0].geometry)
+            var bbox = turf.bbox(mp.geometry.coordinates);
+            console.log(f[0].geometry)
 
             var fire_name = f[0].properties.poly_IncidentName.toUpperCase()
             var cost = 'Unknown'
@@ -358,11 +359,6 @@ map.on('click', function (e) {
                 .setLngLat(e.lngLat)
                 .setHTML(popup_html)
                 .addTo(map);
-
-            var mp = turf.multiPolygon(f[0].geometry)
-            var bbox = turf.bbox(mp.geometry.coordinates);
-
-            console.log(f[0].geometry)
 
             if (window.innerHeight <= '700') {
                 map.fitBounds(bbox, {
