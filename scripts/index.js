@@ -189,10 +189,12 @@ map.on('idle', () => {
         return;
     }
 
-    // Enumerate ids of the layers.
-    // const toggleableLayerIds = ['Fire origins', 'Fire perimeters', 'Hotspots'];
-
-    const layerSVG = { 'Fire origins': '<svg xmlns="http://www.w3.org/2000/svg" id="level-crossing" class="legend" width="15" height="15" viewBox="0 0 15 15"><g><path d="M11,13a2,2,0,0,1-1.4-.6L7.5,10.3,5.4,12.4A2,2,0,1,1,2.6,9.6L4.7,7.5,2.6,5.4a1.93,1.93,0,0,1-.072-2.728q.036-.038.072-.072a1.93,1.93,0,0,1,2.728-.072L5.4,2.6,7.5,4.7,9.6,2.6a1.93,1.93,0,0,1,2.728-.072q.038.036.072.072a1.93,1.93,0,0,1,.072,2.728q-.036.037-.072.072L10.3,7.5l2.1,2.1A2,2,0,0,1,11,13Z" fill="rgb(89, 89, 89)"></path><path d="M8.9,7.5l2.8-2.8a1,1,0,0,0-1.4-1.4L7.5,6.1,4.7,3.3A1,1,0,0,0,3.3,4.7L6.1,7.5,3.3,10.3a1,1,0,0,0,0,1.4A.908.908,0,0,0,4,12a.908.908,0,0,0,.7-.3L7.5,8.9l2.8,2.8a.99.99,0,0,0,1.4-1.4Z" fill="hsl(230, 10%, 74%)"></path></g></svg>', 'Fire perimeters': '<svg viewBox="0 0 15 15" class="legend" width="11px" height="15px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com"><path d="M 15 7.5 C 15 11.642 11.642 15 7.5 15 C 3.358 15 0 11.642 0 7.5 C 0 3.358 3.358 0 7.5 0 C 11.642 0 15 3.358 15 7.5 Z" style="fill: rgb(255, 167, 0);" bx:origin="0 0"/></svg>', 'Hotspots': '<svg viewBox="0 0 15 15" class="legend" width="11px" height="15px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com"><path d="M 15 7.5 C 15 11.642 11.642 15 7.5 15 C 3.358 15 0 11.642 0 7.5 C 0 3.358 3.358 0 7.5 0 C 11.642 0 15 3.358 15 7.5 Z" style="fill: rgb(129, 16, 5);" bx:origin="0 0"/></svg>' }
+    // Enumerate layer ids and svgs.
+    const layerSVG = {
+        'Fire origins': '<svg xmlns="http://www.w3.org/2000/svg" id="level-crossing" class="legend" width="15" height="15" viewBox="0 0 15 15"><g><path d="M11,13a2,2,0,0,1-1.4-.6L7.5,10.3,5.4,12.4A2,2,0,1,1,2.6,9.6L4.7,7.5,2.6,5.4a1.93,1.93,0,0,1-.072-2.728q.036-.038.072-.072a1.93,1.93,0,0,1,2.728-.072L5.4,2.6,7.5,4.7,9.6,2.6a1.93,1.93,0,0,1,2.728-.072q.038.036.072.072a1.93,1.93,0,0,1,.072,2.728q-.036.037-.072.072L10.3,7.5l2.1,2.1A2,2,0,0,1,11,13Z" fill="rgb(89, 89, 89)"></path><path d="M8.9,7.5l2.8-2.8a1,1,0,0,0-1.4-1.4L7.5,6.1,4.7,3.3A1,1,0,0,0,3.3,4.7L6.1,7.5,3.3,10.3a1,1,0,0,0,0,1.4A.908.908,0,0,0,4,12a.908.908,0,0,0,.7-.3L7.5,8.9l2.8,2.8a.99.99,0,0,0,1.4-1.4Z" fill="hsl(230, 10%, 74%)"></path></g></svg>',
+        'Fire perimeters': '<svg viewBox="0 0 15 15" class="legend" width="11px" height="15px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com"><path d="M 15 7.5 C 15 11.642 11.642 15 7.5 15 C 3.358 15 0 11.642 0 7.5 C 0 3.358 3.358 0 7.5 0 C 11.642 0 15 3.358 15 7.5 Z" style="fill: rgb(255, 167, 0);" bx:origin="0 0"/></svg>',
+        'Hotspots': '<svg viewBox="0 0 15 15" class="legend" width="11px" height="15px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com"><path d="M 15 7.5 C 15 11.642 11.642 15 7.5 15 C 3.358 15 0 11.642 0 7.5 C 0 3.358 3.358 0 7.5 0 C 11.642 0 15 3.358 15 7.5 Z" style="fill: rgb(129, 16, 5);" bx:origin="0 0"/></svg>'
+    }
 
     // Set up the corresponding toggle button for each layer.
     for (const [layer, svg] of Object.entries(layerSVG)) {
@@ -203,15 +205,14 @@ map.on('idle', () => {
 
         // Create a button.
         const button = document.createElement('button');
-        var on = '<span class="material-icons on">check</span>';
-        var off = '<span class="material-icons off">close</span>';
+        var checkbox = '<label class="container">' + layer + '<input id="' + layer.replace(/\s+/g, '') + '-check" type="checkbox" checked="checked"><label for="' + layer.replace(/\s+/g, '') + '"></label><span class="checkmark"></span></label>'
         button.id = layer;
-        button.href = '#';
-        button.innerHTML += on + layer + svg;
+        button.innerHTML += checkbox + svg;
         button.className = 'active';
 
         // Show or hide layer when the toggle is clicked.
         button.onclick = function (e) {
+            const check = document.getElementById(layer.replace(/\s+/g, '') + '-check')
             const clickedLayer = this.id;
             e.preventDefault();
             e.stopPropagation();
@@ -225,15 +226,11 @@ map.on('idle', () => {
             if (visibility === 'visible') {
                 map.setLayoutProperty(clickedLayer, 'visibility', 'none');
                 this.className = '';
-                this.innerHTML = off + layer + svg;
+                check.checked = !check.checked;
             } else {
+                map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
                 this.className = 'active';
-                this.innerHTML = on + layer + svg;
-                map.setLayoutProperty(
-                    clickedLayer,
-                    'visibility',
-                    'visible'
-                );
+                check.checked = !check.checked;
             }
 
         };
@@ -260,12 +257,13 @@ map.on('mouseleave', 'Fire origins', () => {
     map.getCanvas().style.cursor = ''
 })
 
+// Popups
 map.on('click', function (e) {
 
-    let f = map.queryRenderedFeatures(e.point, { layers: ['Fire origins', 'Fire perimeters'] });
+    let f = map.queryRenderedFeatures(e.point, { layers: ['Fire origins', 'Fire perimeters'] }); // Needed to avoid duplicate popups for origin points that fall on top of polygons
 
-    if (f.length) {
-        if (f[0].properties.IncidentName) { // topmost feature
+    if (f.length) { // Needed to avoid duplicate popups for origin points that fall on top of polygons
+        if (f[0].properties.IncidentName) { // Points - Fire origins section
             console.log(f[0].properties.IncidentName)
 
             const poly_features = map.querySourceFeatures('NIFC Polygons', {
@@ -287,20 +285,14 @@ map.on('click', function (e) {
                     console.log(fire_name + ': ' + irwinid + ' ' + poly_id);
 
                     if (poly_features[i].properties.irwin_PercentContained >= 0) {
-                        console.log(fire_name)
-                        console.log(poly_features[i].properties.irwin_PercentContained)
                         contained = poly_features[i].properties.irwin_PercentContained + '%'
                     }
 
                     if (poly_features[i].properties.irwin_CalculatedAcres >= 0) {
-                        console.log(fire_name)
-                        console.log(poly_features[i].properties.irwin_CalculatedAcres)
                         acres = Math.round(poly_features[i].properties.irwin_CalculatedAcres)
                     }
 
                     if (poly_features[i].properties.irwin_EstimatedCostToDate >= 0) {
-                        console.log(fire_name)
-                        console.log(poly_features[i].properties.irwin_EstimatedCostToDate)
                         cost = '$' + Math.round(poly_features[i].properties.irwin_EstimatedCostToDate).toLocaleString()
                     }
 
@@ -315,27 +307,28 @@ map.on('click', function (e) {
                         .setHTML(popup_html)
                         .addTo(map)
 
-                    // map.easeTo({
-                    //     // zoom: 9,
-                    //     center: f[0].geometry.coordinates
-                    // })
+                    var mp = turf.multiPolygon(poly_features[i].geometry)
+                    var bbox = turf.bbox(mp.geometry.coordinates);
 
-                    var bbox = turf.extent(poly_features[i].geometry);
+                    console.log(poly_features[i].geometry)
 
-                    if (window.innerHeight <= '800') {
+                    if (window.innerHeight <= '700') {
                         map.fitBounds(bbox, {
                             padding:
-                                { top: 40, bottom: 300, left: 40, right: 40 }
+                                { top: 50, bottom: 300, left: 50, right: 50 }
                         });
                     } else {
-                        map.fitBounds(bbox, { padding: 40 });
+                        map.fitBounds(bbox, {
+                            padding:
+                                { top: 100, bottom: 100, left: 100, right: 100 }
+                        });
                     }
-
                     break;
                 }
             }
 
-        } else {
+        } else { // Polys - Fire perimeters section
+
             console.log(f[0].properties.poly_IncidentName)
 
             var fire_name = f[0].properties.poly_IncidentName.toUpperCase()
@@ -366,15 +359,20 @@ map.on('click', function (e) {
                 .setHTML(popup_html)
                 .addTo(map);
 
-            var bbox = turf.extent(f[0].geometry);
+            var mp = turf.multiPolygon(f[0].geometry)
+            var bbox = turf.bbox(mp.geometry.coordinates);
 
-            if (window.innerHeight <= '800') {
+            console.log(f[0].geometry)
+
+            if (window.innerHeight <= '700') {
                 map.fitBounds(bbox, {
                     padding:
-                        { top: 40, bottom: 300, left: 40, right: 40 }
+                        { top: 50, bottom: 300, left: 50, right: 50 }
                 });
             } else {
-                map.fitBounds(bbox, { padding: 40 });
+                map.fitBounds(bbox, {
+                    padding: { top: 100, bottom: 100, left: 100, right: 100 }
+                });
             }
         }
     }
