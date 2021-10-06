@@ -265,12 +265,12 @@ map.on('click', function (e) {
     if (f.length) { // Needed to avoid duplicate popups for origin points that fall on top of polygons
         if (f[0].properties.IncidentName) { // Points - Fire origins section
 
-            const poly_features = map.querySourceFeatures('NIFC Polygons', {
-                'sourceLayer': 'nifc-polygons-test0'
-            });
+            // const poly_features = map.querySourceFeatures('NIFC Polygons', {
+            //     'sourceLayer': 'nifc-polygons-test0'
+            // });
 
-            // // Query all rendered features from a single layer
-            // const poly_features = map.queryRenderedFeatures({ layers: ['Fire perimeters'] });
+            // Query all rendered features from a single layer
+            const poly_features = map.queryRenderedFeatures({ layers: ['Fire perimeters'] });
 
             var irwinid = f[0].properties.IrwinID
 
