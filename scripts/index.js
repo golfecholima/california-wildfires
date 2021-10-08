@@ -15,6 +15,14 @@ const map = new mapboxgl.Map({
     maxBounds: bounds
 });
 
+// Add icons
+
+map.loadImage('./assets/outline_local_fire_department_black_18dp_2x.png', (error, image) => {
+    if (error) throw error;
+    // add image to the active style and make it SDF-enabled
+    map.addImage('fire', image, { sdf: true });
+});
+
 map.on('load', () => {
 
     // Update the last updated section of about
@@ -24,14 +32,6 @@ map.on('load', () => {
         document.getElementById('lastUpdated').innerHTML += client.responseText;
     }
     client.send();
-
-    // Add icons
-
-    map.loadImage('./assets/outline_local_fire_department_black_18dp_2x.png', (error, image) => {
-        if (error) throw error;
-        // add image to the active style and make it SDF-enabled
-        map.addImage('fire', image, { sdf: true });
-    });
 
     // Add sources
 
@@ -91,8 +91,8 @@ map.on('load', () => {
                     [18, 180]
                 ]
             },
-            'circle-color': '#811005',
-            'circle-opacity': 0.5
+            'circle-color': 'firebrick',
+            'circle-opacity': 1
         }
     });
 
@@ -105,10 +105,10 @@ map.on('load', () => {
             // Make the layer visible by default.
             'visibility': 'visible',
             'icon-image': 'fire',
-            'icon-size': .5
+            'icon-size': .4
         },
         'paint': {
-            'icon-color': 'darkred'
+            'icon-color': 'cornflowerblue'
         }
     });
 
@@ -191,9 +191,9 @@ map.on('idle', () => {
 
     // Enumerate layer ids and svgs.
     const layerSVG = {
-        'Fire origins': '<svg xmlns="http://www.w3.org/2000/svg" id="level-crossing" class="legend" width="15" height="15" viewBox="0 0 15 15"><g><path d="M11,13a2,2,0,0,1-1.4-.6L7.5,10.3,5.4,12.4A2,2,0,1,1,2.6,9.6L4.7,7.5,2.6,5.4a1.93,1.93,0,0,1-.072-2.728q.036-.038.072-.072a1.93,1.93,0,0,1,2.728-.072L5.4,2.6,7.5,4.7,9.6,2.6a1.93,1.93,0,0,1,2.728-.072q.038.036.072.072a1.93,1.93,0,0,1,.072,2.728q-.036.037-.072.072L10.3,7.5l2.1,2.1A2,2,0,0,1,11,13Z" fill="rgb(89, 89, 89)"></path><path d="M8.9,7.5l2.8-2.8a1,1,0,0,0-1.4-1.4L7.5,6.1,4.7,3.3A1,1,0,0,0,3.3,4.7L6.1,7.5,3.3,10.3a1,1,0,0,0,0,1.4A.908.908,0,0,0,4,12a.908.908,0,0,0,.7-.3L7.5,8.9l2.8,2.8a.99.99,0,0,0,1.4-1.4Z" fill="hsl(230, 10%, 74%)"></path></g></svg>',
-        'Fire perimeters': '<svg viewBox="0 0 15 15" class="legend" width="11px" height="15px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com"><path d="M 15 7.5 C 15 11.642 11.642 15 7.5 15 C 3.358 15 0 11.642 0 7.5 C 0 3.358 3.358 0 7.5 0 C 11.642 0 15 3.358 15 7.5 Z" style="fill: rgb(255, 167, 0);" bx:origin="0 0"/></svg>',
-        'Hotspots': '<svg viewBox="0 0 15 15" class="legend" width="11px" height="15px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com"><path d="M 15 7.5 C 15 11.642 11.642 15 7.5 15 C 3.358 15 0 11.642 0 7.5 C 0 3.358 3.358 0 7.5 0 C 11.642 0 15 3.358 15 7.5 Z" style="fill: rgb(129, 16, 5);" bx:origin="0 0"/></svg>'
+        'Fire origins': '<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="18px" viewBox="0 0 24 24" width="18px" fill="CornflowerBlue" style="position: relative;top: 3px;left: 7px;"><g><rect fill="none" height="24" width="24" y="0"></rect></g><g><path d="M19.48,12.35c-1.57-4.08-7.16-4.3-5.81-10.23c0.1-0.44-0.37-0.78-0.75-0.55C9.29,3.71,6.68,8,8.87,13.62 c0.18,0.46-0.36,0.89-0.75,0.59c-1.81-1.37-2-3.34-1.84-4.75c0.06-0.52-0.62-0.77-0.91-0.34C4.69,10.16,4,11.84,4,14.37 c0.38,5.6,5.11,7.32,6.81,7.54c2.43,0.31,5.06-0.14,6.95-1.87C19.84,18.11,20.6,15.03,19.48,12.35z M10.2,17.38 c1.44-0.35,2.18-1.39,2.38-2.31c0.33-1.43-0.96-2.83-0.09-5.09c0.33,1.87,3.27,3.04,3.27,5.08C15.84,17.59,13.1,19.76,10.2,17.38z"></path></g></svg>',
+        'Fire perimeters': '<svg xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" width="14.999997" height="15.000007" viewBox="0 0 3.9687492 3.9687519" version="1.1" id="svg5" inkscape:version="1.1.1 (c3084ef, 2021-09-22)" sodipodi:docname="poly_icon.svg" style="top: 2px;left: 7px;position: relative;"><sodipodi:namedview id="namedview7" pagecolor="#ffffff" bordercolor="#111111" borderopacity="1" inkscape:pageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="1" inkscape:document-units="px" showgrid="false" inkscape:zoom="9.591727" inkscape:cx="59.895366" inkscape:cy="26.637539" inkscape:window-width="1440" inkscape:window-height="847" inkscape:window-x="0" inkscape:window-y="25" inkscape:window-maximized="0" inkscape:current-layer="layer1" units="px" fit-margin-top="0" fit-margin-left="0" fit-margin-right="0" fit-margin-bottom="0"></sodipodi:namedview><defs id="defs2"></defs><g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(-0.04463171,-0.04388963)"><path sodipodi:type="star" style="fill:#ffa700;fill-opacity:1;fill-rule:evenodd;top: 10px;left: 10px;" id="path33" inkscape:flatsided="false" sodipodi:sides="5" sodipodi:cx="95.189667" sodipodi:cy="222.70792" sodipodi:r1="193.44685" sodipodi:r2="132.29352" sodipodi:arg1="-0.22471116" sodipodi:arg2="0.13548742" inkscape:rounded="0.12" inkscape:randomized="0.3" d="m 323.00124,142.39346 c 7.03064,4.97817 -36.72118,64.43318 -44.52716,71.077 -14.11409,12.01278 -47.36382,173.60457 -59.70746,188.05395 -6.82681,7.99141 -52.83044,-40.51866 -61.86161,-44.36679 -16.32938,-6.95785 -175.976255,39.26323 -186.455445,25.90526 -5.79565,-7.3878 45.42205,-42.69365 40.01863,-50.49988 C 0.69820232,318.44845 -116.50949,187.43013 -121.27342,169.48503 -123.90818,159.56027 -16.953793,75.514741 -6.6749331,73.986286 11.910406,71.222666 84.502305,11.366624 102.17365,16.657075 c 9.77336,2.925952 -0.81425,107.569235 9.09224,111.900225 17.91206,7.83094 199.02316,4.83506 211.73535,13.83616 z" transform="matrix(0.00891685,0,0,0.01027946,1.1264355,-0.12393451)" inkscape:transform-center-x="-0.060087351" inkscape:transform-center-y="-0.12551184"></path></g></svg>',
+        'Hotspots': '<svg viewBox="0 0 15 15" class="legend" width="11px" height="15px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com"><path d="M 15 7.5 C 15 11.642 11.642 15 7.5 15 C 3.358 15 0 11.642 0 7.5 C 0 3.358 3.358 0 7.5 0 C 11.642 0 15 3.358 15 7.5 Z" style="fill: firebrick;" bx:origin="0 0"/></svg>'
     }
 
     // Set up the corresponding toggle button for each layer.
