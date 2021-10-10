@@ -15,9 +15,7 @@ urls = {
     "nifc_points": "https://opendata.arcgis.com/datasets/9838f79fb30941d2adde6710e9d6b0df_0.geojson"
 }
 
-gpd.io.file.fiona.drvsupport.supported_drivers['KML'] = 'rw'
-
-for k, v in urls.items():
+for k,v in urls.items():
     if v.endswith(".kmz"):
         i = gpd.read_file(v, driver='KML')
         i.to_file("./gis/" + k + ".geojson", driver="GeoJSON")
@@ -28,12 +26,18 @@ for k, v in urls.items():
 gdf_noaa20 = gpd.read_file("./gis/nasa_viirs_noaa20.geojson")
 gdf_snpp = gpd.read_file("./gis/nasa_viirs_snpp.geojson")
 gdf_modis = gpd.read_file("./gis/nasa_modis.geojson")
+gdf_nifc_poly = gpd.read_file("./gis/nifc_polygons.geojson")
+gdf_nifc_point = gpd.read_file("./gis/nifc_points.geojson")
 
 gdf_list = [gdf_modis, gdf_snpp, gdf_noaa20]
 
 gdf_nasa_all = gpd.GeoDataFrame(pd.concat(gdf_list, ignore_index=True))
 
 gdf_nasa_all.to_file("./gis/nasa_all.geojson", driver="GeoJSON")
+
+gdf_nifc_point = gdf_nifc_point[gdf_nifc_point.IrwinID.isin(gdf_nifc_poly.irwin_IrwinID)]
+
+gdf_nifc_point.to_file("./gis/nifc_points.geojson", driver="GeoJSON")
 
 token = open('./token.txt', 'r').readline()
 upload = ['tilesets', 'upload-source', '--replace', '--token', token,

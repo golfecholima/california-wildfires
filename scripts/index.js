@@ -9,7 +9,7 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/calnewsroom/cktxg3xf3026p18o15i0p1z9v', // style URL
     center: [-119.5788478538649, 36.498509688945572], // starting position [lng, lat]
-    maxZoom: 13, // sets max zoom
+    maxZoom: 10, // sets max zoom
     minZoom: 2, // sets min zoom
     zoom: 2, // starting zoom
     maxBounds: bounds
