@@ -288,8 +288,8 @@ map.on('click', function (e) {
                         contained = poly_features[i].properties.irwin_PercentContained + '%'
                     }
 
-                    if (poly_features[i].properties.irwin_CalculatedAcres >= 0) {
-                        acres = Math.round(poly_features[i].properties.irwin_CalculatedAcres)
+                    if (poly_features[i].properties.irwin_DailyAcres >= 0) {
+                        acres = Math.round(poly_features[i].properties.irwin_DailyAcres)
                     }
 
                     if (poly_features[i].properties.irwin_EstimatedCostToDate >= 0) {
@@ -337,8 +337,8 @@ map.on('click', function (e) {
                 contained = f[0].properties.irwin_PercentContained + '%'
             }
 
-            if (f[0].properties.irwin_CalculatedAcres >= 0) {
-                acres = Math.round(f[0].properties.irwin_CalculatedAcres)
+            if (f[0].properties.irwin_DailyAcres >= 0) {
+                acres = Math.round(f[0].properties.irwin_DailyAcres)
             }
 
             if (f[0].properties.irwin_EstimatedCostToDate >= 0) {
