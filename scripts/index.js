@@ -39,7 +39,7 @@ map.on('load', () => {
     map.addSource('NIFC Polygons', {
         type: 'vector',
         // Use a URL for the value for the `data` property.
-        url: 'mapbox://calnewsroom.nifc-polygons-test0'
+        url: 'mapbox://calnewsroom.nifc-polygons'
     });
 
     // https://data-nifc.opendata.arcgis.com/search?tags=Category%2C2021_wildlandfire_opendata
@@ -62,7 +62,7 @@ map.on('load', () => {
         'id': 'Fire perimeters',
         'type': 'fill',
         'source': 'NIFC Polygons', // reference the data source
-        'source-layer': 'nifc-polygons-test0',
+        'source-layer': 'nifc-polygons',
         'layout': {
             // Make the layer visible by default.
             'visibility': 'visible'
@@ -264,10 +264,6 @@ map.on('click', function (e) {
 
     if (f.length) { // Needed to avoid duplicate popups for origin points that fall on top of polygons
         if (f[0].properties.IncidentName) { // Points - Fire origins section
-
-            // const poly_features = map.querySourceFeatures('NIFC Polygons', {
-            //     'sourceLayer': 'nifc-polygons-test0'
-            // });
 
             // Query all rendered features from a single layer
             const poly_features = map.queryRenderedFeatures({ layers: ['Fire perimeters'] });
