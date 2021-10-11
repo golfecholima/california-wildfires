@@ -276,7 +276,7 @@ map.on('click', function (e) {
 
                 if (irwinid === poly_id) {
                     var mp = turf.multiPolygon(poly_features[i].geometry)
-                    var bbox = turf.bbox(mp.geometry.coordinates);
+                    var bbox = turf.bbox(mp.geometry.coordinates)
                     console.log(poly_features[i].geometry)
 
                     var fire_name = poly_features[i].properties.poly_IncidentName.toUpperCase()
