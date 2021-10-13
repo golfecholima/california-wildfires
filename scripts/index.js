@@ -65,7 +65,6 @@ map.on('load', () => {
         'source': 'NIFC Polygons', // reference the data source
         'source-layer': 'nifc-polygons',
         'layout': {
-            // Make the layer visible by default.
             'visibility': 'visible'
         },
         'paint': {
@@ -80,7 +79,6 @@ map.on('load', () => {
         'type': 'circle',
         'source': 'NASA ALL',
         'layout': {
-            // Make the layer visible by default.
             'visibility': 'visible'
         },
         'paint': {
@@ -99,11 +97,14 @@ map.on('load', () => {
 
     // Add clusters
     map.addLayer({
-        id: 'clusters',
-        type: 'circle',
-        source: 'NIFC Points',
-        filter: ['has', 'point_count'],
-        paint: {
+        'id': 'clusters',
+        'type': 'circle',
+        'source': 'NIFC Points',
+        'layout': {
+            'visibility': 'visible'
+        },
+        'filter': ['has', 'point_count'],
+        'paint': {
             'circle-color': 'cornflowerblue',
             'circle-radius': 10
         }
@@ -111,28 +112,28 @@ map.on('load', () => {
 
     // Add cluster text
     map.addLayer({
-        id: 'cluster-count',
-        type: 'symbol',
-        source: 'NIFC Points',
-        filter: ['has', 'point_count'],
-        layout: {
+        'id': 'cluster-count',
+        'type': 'symbol',
+        'source': 'NIFC Points',
+        'filter': ['has', 'point_count'],
+        'layout': {
+            'visibility': 'visible',
             'text-field': '{point_count}',
             'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
             'text-size': 10
         },
-        paint: {
+        'paint': {
             'text-color': 'white'
         }
     });
 
     // // Add NIFC fire origin points
-    
+
     // map.addLayer({
     //     'id': 'Fire origins',
     //     'type': 'symbol',
     //     'source': 'NIFC Points',
     //     'layout': {
-    //         // Make the layer visible by default.
     //         'visibility': 'visible',
     //         'icon-image': 'fire',
     //         'icon-size': .4
@@ -150,7 +151,7 @@ map.on('load', () => {
         'layout': {
             'visibility': 'visible',
             'icon-image': 'fire',
-            'icon-size': .4
+            'icon-size': .5
         },
         'paint': {
             'icon-color': 'cornflowerblue'
@@ -272,10 +273,22 @@ map.on('idle', () => {
                 map.setLayoutProperty(clickedLayer, 'visibility', 'none');
                 this.className = '';
                 check.checked = !check.checked;
+                
+                if (button.id === 'Fire origins') {
+                    map.setLayoutProperty('clusters', 'visibility', 'none');
+                    map.setLayoutProperty('cluster-count', 'visibility', 'none');
+                }
+
             } else {
                 map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
                 this.className = 'active';
                 check.checked = !check.checked;
+
+                if (button.id === 'Fire origins') {
+                    map.setLayoutProperty('clusters', 'visibility', 'visible');
+                    map.setLayoutProperty('cluster-count', 'visibility', 'visible');
+                }
+
             }
 
         };
