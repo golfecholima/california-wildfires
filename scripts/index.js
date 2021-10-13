@@ -47,7 +47,9 @@ map.on('load', () => {
         type: 'geojson',
         // Use a URL for the value for the `data` property.
         data: 'gis/nifc_points.geojson',
-        cluster: true
+        cluster: true,
+        clusterMaxZoom: 8, // Max zoom to cluster points on
+        clusterRadius: 40 // Radius of each cluster when clustering points (defaults to 50)
     });
 
     map.addSource('NASA ALL', {
@@ -273,7 +275,7 @@ map.on('idle', () => {
                 map.setLayoutProperty(clickedLayer, 'visibility', 'none');
                 this.className = '';
                 check.checked = !check.checked;
-                
+
                 if (button.id === 'Fire origins') {
                     map.setLayoutProperty('clusters', 'visibility', 'none');
                     map.setLayoutProperty('cluster-count', 'visibility', 'none');
@@ -352,7 +354,7 @@ map.on('click', 'clusters', (e) => {
 
 map.on('click', function (e) {
 
-    let f = map.queryRenderedFeatures(e.point, { layers: ['Fire origins', 'Fire perimeters'] }); // Needed to avoid duplicate popups for origin points that fall on top of polygons
+    let f = map.queryRenderedFeatures(e.point, { layers: ['Fire origins', 'Fire perimeters', 'clusters', 'cluster-count'] }); // Needed to avoid duplicate popups for origin points that fall on top of polygons
 
     if (f.length) { // Needed to avoid duplicate popups for origin points that fall on top of polygons
         if (f[0].properties.IncidentName) { // Points - Fire origins section
@@ -373,7 +375,8 @@ map.on('click', function (e) {
                 if (irwinid === poly_id) {
                     var mp = turf.multiPolygon(poly_features[i].geometry)
                     var bbox = turf.bbox(mp.geometry.coordinates)
-                    console.log(poly_features[i].geometry)
+                    var cen = turf.centroid(poly_features[i].geometry)
+
 
                     if (window.innerHeight <= '700') {
                         map.fitBounds(bbox, {
@@ -411,7 +414,7 @@ map.on('click', function (e) {
                     popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres.toLocaleString() + '<br/>' + 'Cost: ' + cost;
 
                     new mapboxgl.Popup()
-                        .setLngLat(e.lngLat)
+                        .setLngLat(cen.geometry.coordinates)
                         .setHTML(popup_html)
                         .addTo(map)
 
@@ -422,8 +425,8 @@ map.on('click', function (e) {
         } else { // Polys - Fire perimeters section
 
             var mp = turf.multiPolygon(f[0].geometry)
-            var bbox = turf.bbox(mp.geometry.coordinates);
-            console.log(f[0].geometry)
+            var bbox = turf.bbox(mp.geometry.coordinates)
+            var cen = turf.centroid(f[0].geometry)
 
             if (window.innerHeight <= '700') {
                 map.fitBounds(bbox, {
@@ -460,7 +463,7 @@ map.on('click', function (e) {
             popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres.toLocaleString() + '<br/>' + 'Cost: ' + cost;
 
             new mapboxgl.Popup()
-                .setLngLat(e.lngLat)
+                .setLngLat(cen.geometry.coordinates)
                 .setHTML(popup_html)
                 .addTo(map);
 
