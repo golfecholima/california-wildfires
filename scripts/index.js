@@ -49,7 +49,7 @@ map.on('load', () => {
         data: 'gis/nifc_points.geojson',
         cluster: true,
         clusterMaxZoom: 8, // Max zoom to cluster points on
-        clusterRadius: 40 // Radius of each cluster when clustering points (defaults to 50)
+        clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
     });
 
     map.addSource('NASA ALL', {
@@ -130,20 +130,6 @@ map.on('load', () => {
     });
 
     // // Add NIFC fire origin points
-
-    // map.addLayer({
-    //     'id': 'Fire origins',
-    //     'type': 'symbol',
-    //     'source': 'NIFC Points',
-    //     'layout': {
-    //         'visibility': 'visible',
-    //         'icon-image': 'fire',
-    //         'icon-size': .4
-    //     },
-    //     'paint': {
-    //         'icon-color': 'cornflowerblue'
-    //     }
-    // });
 
     map.addLayer({
         id: 'Fire origins',
