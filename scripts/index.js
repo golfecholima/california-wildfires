@@ -46,7 +46,8 @@ map.on('load', () => {
     map.addSource('NIFC Points', {
         type: 'geojson',
         // Use a URL for the value for the `data` property.
-        data: 'gis/nifc_points.geojson'
+        data: 'gis/nifc_points.geojson',
+        cluster: true
     });
 
     map.addSource('NASA ALL', {
@@ -96,13 +97,57 @@ map.on('load', () => {
         }
     });
 
-    // Add NIFC fire origin points
+    // Add clusters
     map.addLayer({
-        'id': 'Fire origins',
-        'type': 'symbol',
-        'source': 'NIFC Points',
+        id: 'clusters',
+        type: 'circle',
+        source: 'NIFC Points',
+        filter: ['has', 'point_count'],
+        paint: {
+            'circle-color': 'cornflowerblue',
+            'circle-radius': 10
+        }
+    });
+
+    // Add cluster text
+    map.addLayer({
+        id: 'cluster-count',
+        type: 'symbol',
+        source: 'NIFC Points',
+        filter: ['has', 'point_count'],
+        layout: {
+            'text-field': '{point_count}',
+            'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+            'text-size': 10
+        },
+        paint: {
+            'text-color': 'white'
+        }
+    });
+
+    // // Add NIFC fire origin points
+    
+    // map.addLayer({
+    //     'id': 'Fire origins',
+    //     'type': 'symbol',
+    //     'source': 'NIFC Points',
+    //     'layout': {
+    //         // Make the layer visible by default.
+    //         'visibility': 'visible',
+    //         'icon-image': 'fire',
+    //         'icon-size': .4
+    //     },
+    //     'paint': {
+    //         'icon-color': 'cornflowerblue'
+    //     }
+    // });
+
+    map.addLayer({
+        id: 'Fire origins',
+        type: 'symbol',
+        source: 'NIFC Points',
+        filter: ['!', ['has', 'point_count']],
         'layout': {
-            // Make the layer visible by default.
             'visibility': 'visible',
             'icon-image': 'fire',
             'icon-size': .4
@@ -243,6 +288,7 @@ map.on('idle', () => {
 });
 
 // Show a pointer while hovering on the fire perimeters or fire origins
+
 map.on('mouseenter', 'Fire perimeters', () => {
     map.getCanvas().style.cursor = 'pointer'
 })
@@ -257,7 +303,40 @@ map.on('mouseleave', 'Fire origins', () => {
     map.getCanvas().style.cursor = ''
 })
 
-// Popups
+map.on('mouseenter', 'clusters', () => {
+    map.getCanvas().style.cursor = 'pointer'
+})
+map.on('mouseleave', 'clusters', () => {
+    map.getCanvas().style.cursor = ''
+})
+
+map.on('mouseenter', 'cluster-count', () => {
+    map.getCanvas().style.cursor = 'pointer'
+})
+map.on('mouseleave', 'cluster-count', () => {
+    map.getCanvas().style.cursor = ''
+})
+
+// Clusters / Popups
+// inspect a cluster on click
+map.on('click', 'clusters', (e) => {
+    const features = map.queryRenderedFeatures(e.point, {
+        layers: ['clusters']
+    });
+    const clusterId = features[0].properties.cluster_id;
+    map.getSource('NIFC Points').getClusterExpansionZoom(
+        clusterId,
+        (err, zoom) => {
+            if (err) return;
+
+            map.easeTo({
+                center: features[0].geometry.coordinates,
+                zoom: zoom
+            });
+        }
+    );
+});
+
 map.on('click', function (e) {
 
     let f = map.queryRenderedFeatures(e.point, { layers: ['Fire origins', 'Fire perimeters'] }); // Needed to avoid duplicate popups for origin points that fall on top of polygons
@@ -265,8 +344,12 @@ map.on('click', function (e) {
     if (f.length) { // Needed to avoid duplicate popups for origin points that fall on top of polygons
         if (f[0].properties.IncidentName) { // Points - Fire origins section
 
-            // Query all rendered features from a single layer
-            const poly_features = map.queryRenderedFeatures({ layers: ['Fire perimeters'] });
+            // // Query all rendered features from a single layer
+            // const poly_features = map.queryRenderedFeatures({ layers: ['Fire perimeters'] });
+
+            const poly_features = map.querySourceFeatures('NIFC Polygons', {
+                sourceLayer: 'nifc-polygons'
+            });
 
             var irwinid = f[0].properties.IrwinID
 
@@ -278,6 +361,18 @@ map.on('click', function (e) {
                     var mp = turf.multiPolygon(poly_features[i].geometry)
                     var bbox = turf.bbox(mp.geometry.coordinates)
                     console.log(poly_features[i].geometry)
+
+                    if (window.innerHeight <= '700') {
+                        map.fitBounds(bbox, {
+                            padding:
+                                { top: 50, bottom: 300, left: 50, right: 50 }
+                        });
+                    } else {
+                        map.fitBounds(bbox, {
+                            padding:
+                                { top: 100, bottom: 100, left: 100, right: 100 }
+                        });
+                    }
 
                     var fire_name = poly_features[i].properties.poly_IncidentName.toUpperCase()
                     var cost = 'Unknown'
@@ -307,17 +402,6 @@ map.on('click', function (e) {
                         .setHTML(popup_html)
                         .addTo(map)
 
-                    if (window.innerHeight <= '700') {
-                        map.fitBounds(bbox, {
-                            padding:
-                                { top: 50, bottom: 300, left: 50, right: 50 }
-                        });
-                    } else {
-                        map.fitBounds(bbox, {
-                            padding:
-                                { top: 100, bottom: 100, left: 100, right: 100 }
-                        });
-                    }
                     break;
                 }
             }
@@ -327,6 +411,17 @@ map.on('click', function (e) {
             var mp = turf.multiPolygon(f[0].geometry)
             var bbox = turf.bbox(mp.geometry.coordinates);
             console.log(f[0].geometry)
+
+            if (window.innerHeight <= '700') {
+                map.fitBounds(bbox, {
+                    padding:
+                        { top: 50, bottom: 300, left: 50, right: 50 }
+                });
+            } else {
+                map.fitBounds(bbox, {
+                    padding: { top: 100, bottom: 100, left: 100, right: 100 }
+                });
+            }
 
             var fire_name = f[0].properties.poly_IncidentName.toUpperCase()
             var cost = 'Unknown'
@@ -356,16 +451,6 @@ map.on('click', function (e) {
                 .setHTML(popup_html)
                 .addTo(map);
 
-            if (window.innerHeight <= '700') {
-                map.fitBounds(bbox, {
-                    padding:
-                        { top: 50, bottom: 300, left: 50, right: 50 }
-                });
-            } else {
-                map.fitBounds(bbox, {
-                    padding: { top: 100, bottom: 100, left: 100, right: 100 }
-                });
-            }
         }
     }
 });
