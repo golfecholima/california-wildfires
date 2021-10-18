@@ -7,6 +7,7 @@ import fiona
 import subprocess
 import os
 import datetime
+import pytz
 
 urls = {
     "nasa_modis": "https://firms.modaps.eosdis.nasa.gov/usfs/api/kml_fire_footprints/usa_contiguous_and_hawaii/24h/c6.1/FirespotArea_usa_contiguous_and_hawaii_c6.1_24h.kmz",
@@ -57,7 +58,9 @@ publish = ['tilesets', 'publish',
 subprocess.Popen(upload, stdout=subprocess.PIPE).wait()
 subprocess.Popen(publish, stdout=subprocess.PIPE)
 
-lastUpdated = datetime.datetime.now().strftime('%A, %B %d, %Y at %I:%M %p')
+utcNow = pytz.utc.localize(datetime.datetime.utcnow())
+pdtNow = utcNow.astimezone(pytz.timezone("America/Los_Angeles"))
+lastUpdated = pdtNow.strftime('%A, %B %d, %Y at %I:%M %p')
 
 print(lastUpdated)
 
