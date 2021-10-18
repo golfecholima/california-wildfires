@@ -47,8 +47,8 @@ gdf_nifc_point_no_poly = gdf_nifc_point[gdf_nifc_point.IrwinID.isin(gdf_nifc_pol
 gdf_nifc_point_no_poly.to_file("./gis/nifc_points.geojson", driver="GeoJSON")
 
 # Upload polygon data to Mapbox
-# token = os.environ.get('TOKEN')
-token = token = open('./token.txt', 'r').readline()
+token = os.environ.get('TOKEN')
+# token = token = open('./token.txt', 'r').readline()
 upload = ['tilesets', 'upload-source', '--replace', '--token', token,
           'calnewsroom', 'nifc-polygons', './gis/nifc_polygons.geojson']
 publish = ['tilesets', 'publish',
