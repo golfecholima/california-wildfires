@@ -46,7 +46,7 @@ map.on('load', () => {
     map.addSource('NIFC Points', {
         type: 'geojson',
         // Use a URL for the value for the `data` property.
-        data: 'gis/nifc_points.geojson',
+        data: 'https://raw.githubusercontent.com/golfecholima/california-wildfires/main/gis/nifc_points.geojson',
         cluster: true,
         clusterMaxZoom: 8, // Max zoom to cluster points on
         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
@@ -55,7 +55,7 @@ map.on('load', () => {
     map.addSource('NASA ALL', {
         type: 'geojson',
         // Use a URL for the value for the `data` property.
-        data: 'gis/nasa_all.geojson'
+        data: 'https://raw.githubusercontent.com/golfecholima/california-wildfires/main/gis/nasa_all.geojson'
     });
 
     // Add layers w/ styling
