@@ -1,9 +1,9 @@
 name: wildfires-etl
 
 on:
-  # workflow_dispatch
+  workflow_dispatch
   schedule:
-    - cron: '17,33,47,3 * * * *' # runs about every 15 minutes
+    # - cron: '17,33,47,3 * * * *' # runs about every 15 minutes
 
 jobs:
   build:
