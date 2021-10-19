@@ -7,7 +7,8 @@ body
     padding: 0
 
 p
-    font: 400 1em/1.1 "Noto Serif", serif
+    font: 400 1em/1.2 "Noto Serif", serif
+    letter-spacing: -.02em
 
 h2
     font: 700 1.5em/1 "Noto Serif", serif
@@ -86,6 +87,17 @@ p#lastUpdated
     text-align: center
     margin: 0
     font: 800 .8em/1.5 "Noto Serif", serif
+
+// POPUPS
+
+.mapboxgl-popup-content
+    position: relative
+    background: #fff
+    border-radius: 3px
+    box-shadow: 0 1px 2px rgba(0,0,0,.1)
+    padding: 10px 10px 15px
+    pointer-events: auto
+    font: 300 1.2em/1.5 "Roboto Condensed", sans-serif
 
 // CONTROLS
 // Toggle Buttons
@@ -265,7 +277,7 @@ p#lastUpdated
         margin: 0
         color: #000000
         font: 700 3.1em/1.1 "Noto Serif", serif
-        text-shadow: 1px 1px 6px #999999
+        // text-shadow: 1px 1px 6px #999999
         width: 0
 
     // CONTROLS
@@ -307,7 +319,7 @@ p#lastUpdated
         border: none
         text-align: left
         font: 600 .9em/1 "Roboto", sans-serif
-    
+
     #menu button.active:first-child
         border-top-left-radius: 3px
         border-top-right-radius: 3px

@@ -5,7 +5,8 @@ body {
 }
 
 p {
-  font: 400 1em/1.1 "Noto Serif", serif;
+  font: 400 1em/1.2 "Noto Serif", serif;
+  letter-spacing: -0.02em;
 }
 
 h2 {
@@ -89,6 +90,16 @@ p#lastUpdated {
   text-align: center;
   margin: 0;
   font: 800 0.8em/1.5 "Noto Serif", serif;
+}
+
+.mapboxgl-popup-content {
+  position: relative;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 10px 10px 15px;
+  pointer-events: auto;
+  font: 300 1.2em/1.5 "Roboto Condensed", sans-serif;
 }
 
 #menu {
@@ -279,7 +290,6 @@ p#lastUpdated {
     margin: 0;
     color: #000000;
     font: 700 3.1em/1.1 "Noto Serif", serif;
-    text-shadow: 1px 1px 6px #999999;
     width: 0;
   }
 
