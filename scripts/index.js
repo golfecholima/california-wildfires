@@ -148,7 +148,7 @@ map.on('load', () => {
 
 });
 
-// ZOOM LEVELS/CENTERS FOR MOBILE
+// MOBILE FIRST ZOOM LEVELS/CENTERS
 
 var width = window.innerWidth;
 
@@ -290,33 +290,86 @@ map.on('idle', () => {
 
 // Show a pointer while hovering on the fire perimeters or fire origins
 
-map.on('mouseenter', 'Fire perimeters', () => {
-    map.getCanvas().style.cursor = 'pointer'
-})
-map.on('mouseleave', 'Fire perimeters', () => {
-    map.getCanvas().style.cursor = ''
-})
+// map.on('mousemove', (e) => {
+//     const features = map.queryRenderedFeatures(e.point);
+//     if (features > 0) {
+//         map.getCanvas().style.cursor = 'pointer'
+//     } else {
+//         map.getCanvas().style.cursor = ''
+//     }
+// });
 
-map.on('mouseenter', 'Fire origins', () => {
-    map.getCanvas().style.cursor = 'pointer'
-})
-map.on('mouseleave', 'Fire origins', () => {
-    map.getCanvas().style.cursor = ''
-})
+map.on('mousemove', (e) => {
+    const features = map.queryRenderedFeatures(e.point);
 
-map.on('mouseenter', 'clusters', () => {
-    map.getCanvas().style.cursor = 'pointer'
-})
-map.on('mouseleave', 'clusters', () => {
-    map.getCanvas().style.cursor = ''
-})
+    // Limit the number of properties we're displaying for
+    // legibility and performance
+    const displayProperties = ['source'];
 
-map.on('mouseenter', 'cluster-count', () => {
-    map.getCanvas().style.cursor = 'pointer'
-})
-map.on('mouseleave', 'cluster-count', () => {
-    map.getCanvas().style.cursor = ''
-})
+    const displayFeatures = features.map((feat) => {
+        const displayFeat = {};
+        displayProperties.forEach((prop) => {
+            displayFeat[prop] = feat[prop];
+        });
+        return displayFeat;
+    });
+
+    if (displayFeatures[0] !== undefined) {
+        var sources = ['NIFC Polygons', 'NIFC Points']
+        if (sources.includes(displayFeatures[0].source)) {
+            map.getCanvas().style.cursor = 'pointer'
+        } else {
+            map.getCanvas().style.cursor = ''
+        }
+    }
+});
+
+// var mouseList = ['Fire perimeters', 'Fire origins', 'clusters', 'cluster-count']
+// mouseList.forEach((element) => {
+//     map.on('mouseenter', element, () => {
+//         map.getCanvas().style.cursor = 'pointer'
+//     })
+//     map.on('mouseleave', element, () => {
+//         map.getCanvas().style.cursor = ''
+//     })
+// })
+
+// for (var i = 0; i < mouseList.length; i++) {
+//     map.on('mouseenter', mouseList[i], () => {
+//         map.getCanvas().style.cursor = 'pointer'
+//     })
+//     map.on('mouseleave', mouseList[i], () => {
+//         map.getCanvas().style.cursor = ''
+//     })
+// }
+
+// map.on('mouseenter', 'Fire perimeters', () => {
+//     map.getCanvas().style.cursor = 'pointer'
+// })
+// map.on('mouseleave', 'Fire perimeters', () => {
+//     map.getCanvas().style.cursor = ''
+// })
+
+// map.on('mouseenter', 'Fire origins', () => {
+//     map.getCanvas().style.cursor = 'pointer'
+// })
+// map.on('mouseleave', 'Fire origins', () => {
+//     map.getCanvas().style.cursor = ''
+// })
+
+// map.on('mouseenter', 'clusters', () => {
+//     map.getCanvas().style.cursor = 'pointer'
+// })
+// map.on('mouseleave', 'clusters', () => {
+//     map.getCanvas().style.cursor = ''
+// })
+
+// map.on('mouseenter', 'cluster-count', () => {
+//     map.getCanvas().style.cursor = 'pointer'
+// })
+// map.on('mouseleave', 'cluster-count', () => {
+//     map.getCanvas().style.cursor = ''
+// })
 
 // Clusters / Popups
 // inspect a cluster on click
@@ -367,7 +420,7 @@ map.on('click', function (e) {
                     if (window.innerHeight <= '700') {
                         map.fitBounds(bbox, {
                             padding:
-                                { top: 50, bottom: 300, left: 50, right: 50 }
+                                { top: 50, bottom: 200, left: 50, right: 50 }
                         });
                     } else {
                         map.fitBounds(bbox, {
@@ -417,7 +470,7 @@ map.on('click', function (e) {
             if (window.innerHeight <= '700') {
                 map.fitBounds(bbox, {
                     padding:
-                        { top: 50, bottom: 300, left: 50, right: 50 }
+                        { top: 50, bottom: 200, left: 50, right: 50 }
                 });
             } else {
                 map.fitBounds(bbox, {
