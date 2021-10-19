@@ -25,7 +25,7 @@ map.loadImage('./assets/outline_local_fire_department_black_18dp_2x.png', (error
 
 map.on('load', () => {
 
-    // Update the last updated section of about
+    // Update the 'last updated' section of about
     var client = new XMLHttpRequest();
     client.open('GET', 'last-updated.txt');
     client.onload = function () {
@@ -38,14 +38,12 @@ map.on('load', () => {
     // https://data-nifc.opendata.arcgis.com/search?tags=Category%2C2021_wildlandfire_opendata
     map.addSource('NIFC Polygons', {
         type: 'vector',
-        // Use a URL for the value for the `data` property.
         url: 'mapbox://calnewsroom.nifc-polygons'
     });
 
     // https://data-nifc.opendata.arcgis.com/search?tags=Category%2C2021_wildlandfire_opendata
     map.addSource('NIFC Points', {
         type: 'geojson',
-        // Use a URL for the value for the `data` property.
         data: 'https://raw.githubusercontent.com/golfecholima/california-wildfires/main/gis/nifc_points.geojson',
         cluster: true,
         clusterMaxZoom: 8, // Max zoom to cluster points on
@@ -54,7 +52,6 @@ map.on('load', () => {
 
     map.addSource('NASA ALL', {
         type: 'geojson',
-        // Use a URL for the value for the `data` property.
         data: 'https://raw.githubusercontent.com/golfecholima/california-wildfires/main/gis/nasa_all.geojson'
     });
 
@@ -70,7 +67,7 @@ map.on('load', () => {
             'visibility': 'visible'
         },
         'paint': {
-            'fill-color': '#FFA700', // re color fill
+            'fill-color': '#FFA700',
             'fill-opacity': 0.5
         }
     });
@@ -129,7 +126,7 @@ map.on('load', () => {
         }
     });
 
-    // // Add NIFC fire origin points
+    // Add NIFC fire origin points
 
     map.addLayer({
         id: 'Fire origins',
@@ -288,22 +285,10 @@ map.on('idle', () => {
 
 });
 
-// Show a pointer while hovering on the fire perimeters or fire origins
-
-// map.on('mousemove', (e) => {
-//     const features = map.queryRenderedFeatures(e.point);
-//     if (features > 0) {
-//         map.getCanvas().style.cursor = 'pointer'
-//     } else {
-//         map.getCanvas().style.cursor = ''
-//     }
-// });
-
+// Mouse pointer behavior
 map.on('mousemove', (e) => {
     const features = map.queryRenderedFeatures(e.point);
 
-    // Limit the number of properties we're displaying for
-    // legibility and performance
     const displayProperties = ['source'];
 
     const displayFeatures = features.map((feat) => {
@@ -323,53 +308,6 @@ map.on('mousemove', (e) => {
         }
     }
 });
-
-// var mouseList = ['Fire perimeters', 'Fire origins', 'clusters', 'cluster-count']
-// mouseList.forEach((element) => {
-//     map.on('mouseenter', element, () => {
-//         map.getCanvas().style.cursor = 'pointer'
-//     })
-//     map.on('mouseleave', element, () => {
-//         map.getCanvas().style.cursor = ''
-//     })
-// })
-
-// for (var i = 0; i < mouseList.length; i++) {
-//     map.on('mouseenter', mouseList[i], () => {
-//         map.getCanvas().style.cursor = 'pointer'
-//     })
-//     map.on('mouseleave', mouseList[i], () => {
-//         map.getCanvas().style.cursor = ''
-//     })
-// }
-
-// map.on('mouseenter', 'Fire perimeters', () => {
-//     map.getCanvas().style.cursor = 'pointer'
-// })
-// map.on('mouseleave', 'Fire perimeters', () => {
-//     map.getCanvas().style.cursor = ''
-// })
-
-// map.on('mouseenter', 'Fire origins', () => {
-//     map.getCanvas().style.cursor = 'pointer'
-// })
-// map.on('mouseleave', 'Fire origins', () => {
-//     map.getCanvas().style.cursor = ''
-// })
-
-// map.on('mouseenter', 'clusters', () => {
-//     map.getCanvas().style.cursor = 'pointer'
-// })
-// map.on('mouseleave', 'clusters', () => {
-//     map.getCanvas().style.cursor = ''
-// })
-
-// map.on('mouseenter', 'cluster-count', () => {
-//     map.getCanvas().style.cursor = 'pointer'
-// })
-// map.on('mouseleave', 'cluster-count', () => {
-//     map.getCanvas().style.cursor = ''
-// })
 
 // Clusters / Popups
 // inspect a cluster on click
@@ -396,11 +334,11 @@ map.on('click', function (e) {
     let f = map.queryRenderedFeatures(e.point, { layers: ['Fire origins', 'Fire perimeters', 'clusters', 'cluster-count'] }); // Needed to avoid duplicate popups for origin points that fall on top of polygons
 
     if (f.length) { // Needed to avoid duplicate popups for origin points that fall on top of polygons
-        if (f[0].properties.IncidentName) { // Points - Fire origins section
 
-            // // Query all rendered features from a single layer
-            // const poly_features = map.queryRenderedFeatures({ layers: ['Fire perimeters'] });
+        // Points - Fire origins section
+        if (f[0].properties.IncidentName) {
 
+            // Query all features from a single layer
             const poly_features = map.querySourceFeatures('NIFC Polygons', {
                 sourceLayer: 'nifc-polygons'
             });
@@ -420,7 +358,7 @@ map.on('click', function (e) {
                     if (window.innerHeight <= '700') {
                         map.fitBounds(bbox, {
                             padding:
-                                { top: 50, bottom: 200, left: 50, right: 50 }
+                                { top: 50, bottom: 150, left: 50, right: 50 }
                         });
                     } else {
                         map.fitBounds(bbox, {
@@ -470,7 +408,7 @@ map.on('click', function (e) {
             if (window.innerHeight <= '700') {
                 map.fitBounds(bbox, {
                     padding:
-                        { top: 50, bottom: 200, left: 50, right: 50 }
+                        { top: 50, bottom: 150, left: 50, right: 50 }
                 });
             } else {
                 map.fitBounds(bbox, {
@@ -478,34 +416,35 @@ map.on('click', function (e) {
                 });
             }
 
-            var fire_name = f[0].properties.poly_IncidentName.toUpperCase()
-            var cost = 'Unknown'
-            var acres = 'Unknown'
-            var contained = 'Unknown'
+            if (f[0].properties.poly_IncidentName !== undefined) {
+                var fire_name = f[0].properties.poly_IncidentName.toUpperCase()
+                var cost = 'Unknown'
+                var acres = 'Unknown'
+                var contained = 'Unknown'
 
-            if (f[0].properties.irwin_PercentContained >= 0) {
-                contained = f[0].properties.irwin_PercentContained + '%'
+                if (f[0].properties.irwin_PercentContained >= 0) {
+                    contained = f[0].properties.irwin_PercentContained + '%'
+                }
+
+                if (f[0].properties.irwin_DailyAcres >= 0) {
+                    acres = Math.round(f[0].properties.irwin_DailyAcres)
+                }
+
+                if (f[0].properties.irwin_EstimatedCostToDate >= 0) {
+                    cost = '$' + Math.round(f[0].properties.irwin_EstimatedCostToDate).toLocaleString()
+                }
+
+                if (fire_name == null || fire_name == 'N/A') {
+                    fire_name = 'Unknown';
+                }
+
+                popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres.toLocaleString() + '<br/>' + 'Cost: ' + cost;
+
+                new mapboxgl.Popup()
+                    .setLngLat(cen.geometry.coordinates)
+                    .setHTML(popup_html)
+                    .addTo(map);
             }
-
-            if (f[0].properties.irwin_DailyAcres >= 0) {
-                acres = Math.round(f[0].properties.irwin_DailyAcres)
-            }
-
-            if (f[0].properties.irwin_EstimatedCostToDate >= 0) {
-                cost = '$' + Math.round(f[0].properties.irwin_EstimatedCostToDate).toLocaleString()
-            }
-
-            if (fire_name == null || fire_name == 'N/A') {
-                fire_name = 'Unknown';
-            }
-
-            popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres.toLocaleString() + '<br/>' + 'Cost: ' + cost;
-
-            new mapboxgl.Popup()
-                .setLngLat(cen.geometry.coordinates)
-                .setHTML(popup_html)
-                .addTo(map);
-
         }
     }
 });
