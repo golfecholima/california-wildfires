@@ -50,11 +50,14 @@ gdf_nifc_point_no_poly.to_file("./gis/nifc_points.geojson", driver="GeoJSON")
 # Upload polygon data to Mapbox
 token = os.environ.get('TOKEN')
 # token = token = open('./token.txt', 'r').readline()
+updateRecipe = ['tilesets', 'update-recipe', 'calnewsroom.nifc-polygons',
+                './nifc-tilesets-recipe.json', '--token', token]
 upload = ['tilesets', 'upload-source', '--replace', '--token', token,
           'calnewsroom', 'nifc-polygons', './gis/nifc_polygons.geojson']
 publish = ['tilesets', 'publish',
            'calnewsroom.nifc-polygons', '--token', token]
 
+subprocess.Popen(updateRecipe, stdout=subprocess.PIPE).wait()
 subprocess.Popen(upload, stdout=subprocess.PIPE).wait()
 subprocess.Popen(publish, stdout=subprocess.PIPE)
 
