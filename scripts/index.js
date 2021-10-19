@@ -388,7 +388,7 @@ map.on('click', function (e) {
                         fire_name = 'Unknown';
                     }
 
-                    popup_html = '<strong>' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres + '<br/>' + 'Cost: ' + cost;
+                    popup_html = `<strong>${fire_name}</strong><br/>Containment: ${contained}<br/>Acres: ${acres}<br/>Cost: ${cost}`;
 
                     new mapboxgl.Popup()
                         .setLngLat(cen.geometry.coordinates)
@@ -438,7 +438,7 @@ map.on('click', function (e) {
                     fire_name = 'Unknown';
                 }
 
-                popup_html = '<strong>' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres + '<br/>' + 'Cost: ' + cost;
+                popup_html = `<strong>${fire_name}</strong><br/>Containment: ${contained}<br/>Acres: ${acres}<br/>Cost: ${cost}`;
 
                 new mapboxgl.Popup()
                     .setLngLat(cen.geometry.coordinates)
