@@ -172,7 +172,6 @@ if (width >= '1000') {
     })
 }
 
-
 // CONTROLS
 
 // Search
@@ -310,7 +309,7 @@ map.on('mousemove', (e) => {
 });
 
 // Clusters / Popups
-// inspect a cluster on click
+// Inspect a cluster on click
 map.on('click', 'clusters', (e) => {
     const features = map.queryRenderedFeatures(e.point, {
         layers: ['clusters']
@@ -329,6 +328,7 @@ map.on('click', 'clusters', (e) => {
     );
 });
 
+// Bespoke popup behavior for points v polygons
 map.on('click', function (e) {
 
     let f = map.queryRenderedFeatures(e.point, { layers: ['Fire origins', 'Fire perimeters', 'clusters', 'cluster-count'] }); // Needed to avoid duplicate popups for origin points that fall on top of polygons
@@ -377,7 +377,7 @@ map.on('click', function (e) {
                     }
 
                     if (poly_features[i].properties.irwin_DailyAcres >= 0) {
-                        acres = Math.round(poly_features[i].properties.irwin_DailyAcres)
+                        acres = Math.round(poly_features[i].properties.irwin_DailyAcres).toLocaleString()
                     }
 
                     if (poly_features[i].properties.irwin_EstimatedCostToDate >= 0) {
@@ -388,7 +388,7 @@ map.on('click', function (e) {
                         fire_name = 'Unknown';
                     }
 
-                    popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres.toLocaleString() + '<br/>' + 'Cost: ' + cost;
+                    popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres + '<br/>' + 'Cost: ' + cost;
 
                     new mapboxgl.Popup()
                         .setLngLat(cen.geometry.coordinates)
@@ -427,7 +427,7 @@ map.on('click', function (e) {
                 }
 
                 if (f[0].properties.irwin_DailyAcres >= 0) {
-                    acres = Math.round(f[0].properties.irwin_DailyAcres)
+                    acres = Math.round(f[0].properties.irwin_DailyAcres).toLocaleString()
                 }
 
                 if (f[0].properties.irwin_EstimatedCostToDate >= 0) {
@@ -438,7 +438,7 @@ map.on('click', function (e) {
                     fire_name = 'Unknown';
                 }
 
-                popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres.toLocaleString() + '<br/>' + 'Cost: ' + cost;
+                popup_html = '<strong>Name: ' + fire_name + '</strong><br/>' + 'Containment: ' + contained + '<br/>' + 'Acres: ' + acres + '<br/>' + 'Cost: ' + cost;
 
                 new mapboxgl.Popup()
                     .setLngLat(cen.geometry.coordinates)
