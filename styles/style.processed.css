@@ -9,7 +9,7 @@ p {
 }
 
 h2 {
-  font: 700 2em/1 "Noto Serif", serif;
+  font: 700 1.5em/1 "Noto Serif", serif;
 }
 
 #map {
@@ -63,9 +63,11 @@ button.about {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  border-radius: 5px;
+  border-radius: 4px;
   width: 80%;
   max-width: 600px;
+  max-height: 60%;
+  overflow: auto;
 }
 
 .close {
@@ -86,7 +88,7 @@ button.about {
 p#lastUpdated {
   text-align: center;
   margin: 0;
-  font: 800 0.8em/1 "Noto Serif", serif;
+  font: 800 0.8em/1.5 "Noto Serif", serif;
 }
 
 #menu {
