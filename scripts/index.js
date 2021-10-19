@@ -291,13 +291,13 @@ map.on('mousemove', (e) => {
         layers: layers
     });
 
-    if (features) {
+    // if (features) {
         if (features[0] === undefined) {
             map.getCanvas().style.cursor = ''
         } else {
             map.getCanvas().style.cursor = 'pointer'
         }
-    }
+    // }
 
 });
 
