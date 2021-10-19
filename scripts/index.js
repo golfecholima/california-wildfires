@@ -286,26 +286,19 @@ map.on('idle', () => {
 
 // Mouse pointer behavior
 map.on('mousemove', (e) => {
-    const features = map.queryRenderedFeatures(e.point);
-
-    const displayProperties = ['source'];
-
-    const displayFeatures = features.map((feat) => {
-        const displayFeat = {};
-        displayProperties.forEach((prop) => {
-            displayFeat[prop] = feat[prop];
-        });
-        return displayFeat;
+    const layers = ['Fire origins', 'Fire perimeters', 'clusters', 'cluster-count'];
+    const features = map.queryRenderedFeatures(e.point, {
+        layers: layers
     });
 
-    if (displayFeatures[0] !== undefined) {
-        var sources = ['NIFC Polygons', 'NIFC Points']
-        if (sources.includes(displayFeatures[0].source)) {
-            map.getCanvas().style.cursor = 'pointer'
-        } else {
+    if (features) {
+        if (features[0] === undefined) {
             map.getCanvas().style.cursor = ''
+        } else {
+            map.getCanvas().style.cursor = 'pointer'
         }
     }
+
 });
 
 // Clusters / Popups
