@@ -38,10 +38,10 @@ button.about {
   z-index: 1;
   background: rgba(0, 0, 0, 0);
   border: none;
-  padding-left: 10px;
+  padding-left: 12px;
   cursor: pointer;
   text-align: left;
-  font: 400 1em/1.1 "Noto Serif", serif;
+  font: 400 1em/1.1 "Roboto Condensed", sans-serif;
   text-decoration: underline;
 }
 
@@ -123,7 +123,6 @@ p#lastUpdated {
   text-decoration: none;
   border: none;
   text-align: left;
-  font: 600 0.9em/1 "Roboto", sans-serif;
 }
 
 #menu button:first-child {
@@ -171,24 +170,6 @@ p#lastUpdated {
 #menu button.active:hover:last-child {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-}
-
-#menu button span.on {
-  color: #00d000;
-  padding-right: 5px;
-  font-size: 1em;
-  font-weight: 400;
-  position: relative;
-  top: 2px;
-}
-
-#menu button span.off {
-  color: lightgray;
-  padding-right: 5px;
-  font-size: 1em;
-  font-weight: 400;
-  position: relative;
-  top: 2px;
 }
 
 .legend {
@@ -300,9 +281,9 @@ p#lastUpdated {
     border: none;
     text-decoration: underline;
     top: 180px;
-    padding-left: 10px;
+    padding-left: 12px;
     cursor: pointer;
-    font: 1em/1.1 "Noto Serif", serif;
+    font: 1em/1.1 "Roboto Condensed", sans-serif;
     text-align: left;
   }
 
@@ -325,7 +306,7 @@ p#lastUpdated {
     text-decoration: none;
     border: none;
     text-align: left;
-    font: 600 0.9em/1 "Roboto", sans-serif;
+    font: rcd400;
   }
 
   #menu button.active:first-child {

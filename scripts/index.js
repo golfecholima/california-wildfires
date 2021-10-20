@@ -250,7 +250,7 @@ map.on('idle', () => {
 
         // Create a button.
         const button = document.createElement('button');
-        var checkbox = '<label class="container">' + layer + '<input id="' + layer.replace(/\s+/g, '') + '-check" type="checkbox" checked="checked"><label for="' + layer.replace(/\s+/g, '') + '"></label><span class="checkmark"></span></label>'
+        var checkbox = '<label class="container">' + layer + '<input id="' + layer.replace(/\s+/g, '') + '-check" type="checkbox" checked="checked" tabindex ="-1"><label for="' + layer.replace(/\s+/g, '') + '"></label><span class="checkmark"></span></label>'
         button.id = layer;
         button.innerHTML += checkbox + svg;
         button.className = 'active';
