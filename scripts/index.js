@@ -143,6 +143,21 @@ map.on('load', () => {
         }
     });
 
+    // Mouse pointer behavior
+    map.on('mousemove', (e) => {
+        const layers = ['Fire origins', 'Fire perimeters', 'clusters', 'cluster-count'];
+        const features = map.queryRenderedFeatures(e.point, {
+            layers: layers
+        });
+
+        if (features.length) {
+            map.getCanvas().style.cursor = 'pointer'
+        } else {
+            map.getCanvas().style.cursor = ''
+        }
+
+    });
+
 });
 
 // MOBILE FIRST ZOOM LEVELS/CENTERS
@@ -280,21 +295,6 @@ map.on('idle', () => {
         const layers = document.getElementById('menu');
         layers.appendChild(button);
 
-    }
-
-});
-
-// Mouse pointer behavior
-map.on('mousemove', (e) => {
-    const layers = ['Fire origins', 'Fire perimeters', 'clusters', 'cluster-count'];
-    const features = map.queryRenderedFeatures(e.point, {
-        layers: layers
-    });
-
-    if (features[0] === undefined) {
-        map.getCanvas().style.cursor = ''
-    } else {
-        map.getCanvas().style.cursor = 'pointer'
     }
 
 });
