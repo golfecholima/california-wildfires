@@ -455,8 +455,22 @@ span.onclick = function () {
     modal.style.display = "none";
 }
 
-window.onclick = function (event) {
-    if (event.target == modal) {
+span.onkeyup = function (e) {
+    if (e.keyCode == 32) {
+        modal.style.display = "none";
+    } else if (e.keyCode == 13) {
+        modal.style.display = "none";
+    }
+}
+
+window.onkeyup = function (e) {
+    if (e.keyCode == 27) {
+        modal.style.display = "none";
+    }
+}
+
+window.onclick = function (e) {
+    if (e.target == modal) {
         modal.style.display = "none";
     }
 }
