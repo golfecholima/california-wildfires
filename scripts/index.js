@@ -38,7 +38,7 @@ map.on('load', () => {
     // https://data-nifc.opendata.arcgis.com/search?tags=Category%2C2021_wildlandfire_opendata
     map.addSource('NIFC Polygons', {
         type: 'vector',
-        url: 'mapbox://calnewsroom.nifc-polygons'
+        url: 'mapbox://calnewsroom.nifc-polygons-tp'
     });
 
     // https://data-nifc.opendata.arcgis.com/search?tags=Category%2C2021_wildlandfire_opendata
@@ -62,7 +62,7 @@ map.on('load', () => {
         'id': 'Fire perimeters',
         'type': 'fill',
         'source': 'NIFC Polygons', // reference the data source
-        'source-layer': 'nifc-polygons',
+        'source-layer': 'nifc_polygons',
         'layout': {
             'visibility': 'visible'
         },
@@ -333,7 +333,7 @@ map.on('click', function (e) {
 
             // Query all features from a single layer
             const poly_features = map.querySourceFeatures('NIFC Polygons', {
-                sourceLayer: 'nifc-polygons'
+                sourceLayer: 'nifc_polygons'
             });
 
             var irwinid = f[0].properties.IrwinID
