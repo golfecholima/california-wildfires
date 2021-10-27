@@ -19,10 +19,12 @@ jobs:
           python-version: '3.9.7' # install the python version needed
           
       - name: install things
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python -m pip install --upgrade pip
           pip install pandas geopandas fiona mapbox-tilesets mapboxcli
-          git clone https://github.com/golfecholima/tippecanoe.git
+          git clone https://github.com/mapbox/tippecanoe.git
           cd tippecanoe
           make -j
           make install
