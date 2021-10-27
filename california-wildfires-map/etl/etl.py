@@ -50,7 +50,7 @@ gdf_nifc_point_no_poly.to_file("./gis/nifc_points.geojson", driver="GeoJSON")
 # Upload polygon data to Mapbox
 token = os.environ.get('TOKEN')
 os.environ['MAPBOX_ACCESS_TOKEN'] = token
-tp = ['tippecanoe', '--force', '-z10', '-o', './gis/nifc_polygons.mbtiles', '--drop-densest-as-needed', '/Users/work/Documents/work/california-wildfires/gis/nifc_polygons.geojson']
+tp = ['tippecanoe', '--force', '-z10', '-o', './gis/nifc_polygons.mbtiles', '--drop-densest-as-needed', './gis/nifc_polygons.geojson']
 mb = ['mapbox', 'upload', 'calnewsroom.nifc-polygons-tp', './gis/nifc_polygons.mbtiles']
 
 subprocess.Popen(tp, stdout=subprocess.PIPE).wait()
