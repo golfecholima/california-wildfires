@@ -49,17 +49,12 @@ gdf_nifc_point_no_poly.to_file("./gis/nifc_points.geojson", driver="GeoJSON")
 
 # Upload polygon data to Mapbox
 token = os.environ.get('TOKEN')
-# token = token = open('./token.txt', 'r').readline()
-updateRecipe = ['tilesets', 'update-recipe', 'calnewsroom.nifc-polygons',
-                './nifc-tilesets-recipe.json', '--token', token]
-upload = ['tilesets', 'upload-source', '--replace', '--token', token,
-          'calnewsroom', 'nifc-polygons', './gis/nifc_polygons.geojson']
-publish = ['tilesets', 'publish',
-           'calnewsroom.nifc-polygons', '--token', token]
+os.environ['MAPBOX_ACCESS_TOKEN'] = token
+tp = ['tippecanoe', '--force', '-z10', '-o', './gis/nifc_polygons.mbtiles', '--drop-densest-as-needed', '/Users/work/Documents/work/california-wildfires/gis/nifc_polygons.geojson']
+mb = ['mapbox', 'upload', 'calnewsroom.nifc-polygons-tp', './gis/nifc_polygons.mbtiles']
 
-subprocess.Popen(updateRecipe, stdout=subprocess.PIPE).wait()
-subprocess.Popen(upload, stdout=subprocess.PIPE).wait()
-subprocess.Popen(publish, stdout=subprocess.PIPE)
+subprocess.Popen(tp, stdout=subprocess.PIPE).wait()
+subprocess.Popen(mb, stdout=subprocess.PIPE)
 
 utcNow = pytz.utc.localize(datetime.datetime.utcnow())
 pdtNow = utcNow.astimezone(pytz.timezone("America/Los_Angeles"))
