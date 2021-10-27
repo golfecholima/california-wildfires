@@ -2,7 +2,6 @@ token.txt
 token-mapbox-cli.txt
 last-updated.txt
 tippecanoe/
-gis
 .DS_Store
 gis/.DS_Store
 .vscode/
