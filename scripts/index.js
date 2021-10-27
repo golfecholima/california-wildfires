@@ -486,3 +486,7 @@ var elem = document.getElementById("warning");
 window.setTimeout(function () {
     elem.style.opacity = '0';
 }, 5000);
+
+window.setTimeout(function () {
+    elem.style.display = 'none';
+}, 6000);
