@@ -82,11 +82,14 @@ map.on('load', () => {
         },
         'paint': {
             'circle-radius': {
-                // Make circles larger as the user zooms from z12 to z22.
+                // Make circles larger as the user zooms in.
                 'base': 1.75,
                 'stops': [
-                    [9, 2],
-                    [18, 180]
+                    [2, 1],
+                    [4, 2],
+                    [6, 3],
+                    [8, 3.5],
+                    [10, 4]
                 ]
             },
             'circle-color': 'firebrick',
@@ -443,6 +446,7 @@ map.on('click', function (e) {
 });
 
 // ABOUT MODAL
+
 var modal = document.getElementById("modal");
 var btn = document.getElementById("modalBtn");
 var span = document.getElementsByClassName("close")[0];
@@ -474,3 +478,11 @@ window.onclick = function (e) {
         modal.style.display = "none";
     }
 }
+
+// WARNING
+
+var elem = document.getElementById("warning");
+
+window.setTimeout(function () {
+    elem.style.opacity = '0';
+}, 5000);

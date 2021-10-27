@@ -20,6 +20,33 @@ h2 {
   width: 100%;
 }
 
+#warning {
+  position: fixed;
+  top: 40%;
+  right: 0px;
+  text-align: center;
+  width: 100%;
+  z-index: 5;
+  background: firebrick;
+  color: white;
+}
+
+#warning p {
+  padding: 0 10px;
+}
+
+.toggle-content {
+  display: none;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 1000ms ease-in-out, display 1000ms ease-in-out;
+}
+
+.toggle-content.is-visible {
+  display: block;
+  opacity: 1;
+}
+
 header > h1 {
   position: absolute;
   bottom: 150px;
@@ -46,7 +73,7 @@ button.about {
 }
 
 .modal {
-  display: block;
+  display: none;
   position: fixed;
   z-index: 3;
   padding-top: 100px;
