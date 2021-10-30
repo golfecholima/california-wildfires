@@ -12,7 +12,8 @@ const map = new mapboxgl.Map({
     maxZoom: 10, // sets max zoom
     minZoom: 2, // sets min zoom
     zoom: 2, // starting zoom
-    maxBounds: bounds
+    maxBounds: bounds, // restrict panning area
+    hash: true // enable custon center/zoom via URL
 });
 
 // Add icons
