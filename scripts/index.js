@@ -24,6 +24,12 @@ map.loadImage('./assets/outline_local_fire_department_black_18dp_2x.png', (error
     map.addImage('fire', image, { sdf: true });
 });
 
+map.loadImage('./assets/pattern.png', (error, image) => {
+    if (error) throw error;
+    // add image to the active style and make it SDF-enabled
+    map.addImage('pattern', image, { sdf: true });
+});
+
 map.on('load', () => {
 
     // Update the 'last updated' section of about
@@ -70,6 +76,7 @@ map.on('load', () => {
         'paint': {
             'fill-color': '#FFA700',
             'fill-opacity': 0.5
+            // 'fill-pattern': 'pattern'
         }
     });
 

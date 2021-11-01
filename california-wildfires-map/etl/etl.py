@@ -58,7 +58,7 @@ subprocess.Popen(mb, stdout=subprocess.PIPE)
 
 utcNow = pytz.utc.localize(datetime.datetime.utcnow())
 pdtNow = utcNow.astimezone(pytz.timezone("America/Los_Angeles"))
-lastUpdated = pdtNow.strftime('%A, %B %d, %Y at %I:%M %p')
+lastUpdated = pdtNow.strftime('%A, %B %d, %Y at %I:%M %p') + ' PST'
 
 print(lastUpdated)
 
