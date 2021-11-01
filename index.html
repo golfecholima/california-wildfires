@@ -4,6 +4,21 @@
 <head>
     <meta charset='utf-8'>
 
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != "dataLayer" ? "&l=" + l : "";
+            j.async = true;
+            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-KLJNT5P");
+    </script>
+    <!-- End Google Tag Manager -->
+
     <title>Mapping California's Wildfires</title>
 
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'>
@@ -25,7 +40,7 @@
         content="https://projects.capradio.org/california-wildfire-map/assets/california-wildfire-map-image.jpg" />
     <meta property="og:description"
         content="See the location and some perimeters of wildfires currently burning in California. Updated hourly, the map is based on data from local, state and federal agencies." />
-    
+
     <!-- Styles -->
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css'>
     <link rel='stylesheet'
@@ -45,7 +60,7 @@
 
 </head>
 
-<body>
+<body aria-live="polite">
     <header>
         <h1>Mapping</br>California’s</br>Wildfires</h1>
     </header>
@@ -66,7 +81,7 @@
                     </svg> data comes from four <a href="https://firms.modaps.eosdis.nasa.gov/" target="_blank">NASA</a>
                     satellites. A cluster of hotspots can represent an emerging wildfire or burn activity at the edge of
                     a fire perimeter. However, satellite imaging can sometimes capture bright things such as solar panel
-                    glare and byproduct burnoff at oil refineries. It also may miss home hotspots due to cloud cover or
+                    glare and byproduct burnoff at oil refineries. It also may miss some hotspots due to cloud cover or
                     smoke plumes. Always check with your local fire department for more information.</p>
 
                 <p>Most recent perimeter <svg class="about-svg"
