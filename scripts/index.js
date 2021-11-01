@@ -448,37 +448,45 @@ map.on('click', function (e) {
 
 // ABOUT MODAL
 
-var modal = document.getElementById("modal");
-var btn = document.getElementById("modalBtn");
-var span = document.getElementsByClassName("close")[0];
+const close = document.getElementById("close");
+const container = document.getElementById('modal');
+const content = document.getElementById('modal-content');
 
-btn.onclick = function () {
-    modal.style.display = "block";
-}
+const ft = focusTrap.createFocusTrap('#modal-content', {
+    clickOutsideDeactivates: true,
+    escapeDeactivates: true,
+    delayInitialFocus: true,
+    // Called before focus is sent
+    onActivate: () => container.classList.add('is-active') || content.classList.add('is-active'),
 
-span.onclick = function () {
-    modal.style.display = "none";
-}
+    // There is a delay between when the class is applied
+    // and when the element is focusable
+    checkCanFocusTrap: (trapContainers) => {
+        const results = trapContainers.map((trapContainer) => {
+            return new Promise((resolve) => {
+                const interval = setInterval(() => {
+                    if (getComputedStyle(trapContainer).visibility !== 'hidden') {
+                        resolve();
+                        clearInterval(interval);
+                    }
+                }, 5);
+            });
+        });
+        // Return a promise that resolves when all the trap containers are able to receive focus
+        return Promise.all(results);
+    },
 
-span.onkeyup = function (e) {
-    if (e.keyCode == 32) {
-        modal.style.display = "none";
-    } else if (e.keyCode == 13) {
-        modal.style.display = "none";
-    }
-}
+    // Called after focus is sent to the focus trap
+    onDeactivate: () => container.classList.remove('is-active') || content.classList.remove('is-active')
+});
 
-window.onkeyup = function (e) {
-    if (e.keyCode == 27) {
-        modal.style.display = "none";
-    }
-}
+document
+    .getElementById('modalBtn')
+    .addEventListener('click', ft.activate);
 
-window.onclick = function (e) {
-    if (e.target == modal) {
-        modal.style.display = "none";
-    }
-}
+document
+    .getElementById('close')
+    .addEventListener('click', ft.deactivate);
 
 // WARNING
 
