@@ -34,7 +34,7 @@ map.on('load', () => {
 
     // Update the 'last updated' section of about
     var client = new XMLHttpRequest();
-    client.open('GET', 'last-updated.txt');
+    client.open('GET', 'https://raw.githubusercontent.com/golfecholima/california-wildfires/main/last-updated.txt');
     client.onload = function () {
         document.getElementById('lastUpdated').innerHTML += client.responseText;
     }
