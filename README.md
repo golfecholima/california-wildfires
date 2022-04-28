@@ -1,5 +1,7 @@
 # Mapping California’s Wildfires
 
+![Screenshot of default map view, whole state of California](/leadaht.png)
+
 ### How to use this map
 If you're a California public radio newsroom and wish to publish this map on your site you have a few options:
 
