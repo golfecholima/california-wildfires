@@ -5,7 +5,7 @@
 ### How to use this map
 If you're a California public radio newsroom and wish to publish this map on your site you have a few options:
 
-* Point users to the full window version hosted by CapRadio here: https://projects.capradio.org/california-wildfire-map/
+* Point users to the full-spread version hosted by CapRadio here: https://projects.capradio.org/california-wildfire-map/
 * Host this map yourself on your own servers by cloning this repository.
 * Use [pym.js](http://blog.apps.npr.org/pym.js/) or an [iframe](https://www.w3schools.com/howto/howto_css_responsive_iframes.asp) to embed the map on your site or within an article.
 
