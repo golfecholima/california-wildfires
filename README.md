@@ -1,4 +1,4 @@
-# Mapping California's Wildfires
+# Mapping California’s Wildfires
 
 ### How to use this map
 If you're a California public radio newsroom and wish to publish this map on your site you have a few options:
