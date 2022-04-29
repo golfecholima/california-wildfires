@@ -45,7 +45,10 @@ gdf_nifc_poly_10_plus.to_file("./gis/nifc_polygons.geojson", driver="GeoJSON")
 
 # Remove NIFC origins that don't have a corresponding polygon
 gdf_nifc_point_no_poly = gdf_nifc_point[gdf_nifc_point.IrwinID.isin(gdf_nifc_poly_10_plus.irwin_IrwinID)]
-gdf_nifc_point_no_poly.to_file("./gis/nifc_points.geojson", driver="GeoJSON")
+try:
+    gdf_nifc_point_no_poly.to_file("./gis/nifc_points.geojson", driver="GeoJSON")
+except:
+    print('Something went wrong. It seems like sometimes the URL does not return any data, which tosses a dataframe error.')
 
 # Upload polygon data to Mapbox
 token = os.environ.get('TOKEN')
