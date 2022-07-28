@@ -23,10 +23,16 @@ gpd.io.file.fiona.drvsupport.supported_drivers['KML'] = 'rw'
 for k,v in urls.items():
     if v.endswith(".kmz"):
         i = gpd.read_file(v, driver='KML')
-        i.to_file("./gis/" + k + ".geojson", driver="GeoJSON")
+        try:
+            i.to_file("./gis/" + k + ".geojson", driver="GeoJSON")
+        except:
+            nasa_error = 'There was an error trying to write a NASA .kmz file to .geojson in the gis folder, etl.py Line 27\n'
     else:
         i = gpd.read_file(v)
-        i.to_file("./gis/" + k + ".geojson", driver="GeoJSON")
+        try:
+            i.to_file("./gis/" + k + ".geojson", driver="GeoJSON")
+        except:
+            nifc_error = 'There was an error trying to write a NIFC .geojson file to .geojson in the gis folder, etl.py Line 33\n'
 
 gdf_noaa20 = gpd.read_file("./gis/nasa_viirs_noaa20.geojson")
 gdf_snpp = gpd.read_file("./gis/nasa_viirs_snpp.geojson")
@@ -48,7 +54,7 @@ gdf_nifc_point_no_poly = gdf_nifc_point[gdf_nifc_point.IrwinID.isin(gdf_nifc_pol
 try:
     gdf_nifc_point_no_poly.to_file("./gis/nifc_points.geojson", driver="GeoJSON")
 except:
-    print('Something went wrong. It seems like sometimes the URL does not return any data, which tosses a dataframe error.')
+    rm_origins_error = 'There was an error when trying to remove the NIFC origins that don\'t have a corresponding polygon. etl.py Line 55\n'
 
 # Upload polygon data to Mapbox
 token = os.environ.get('TOKEN')
@@ -63,8 +69,9 @@ utcNow = pytz.utc.localize(datetime.datetime.utcnow())
 pdtNow = utcNow.astimezone(pytz.timezone("America/Los_Angeles"))
 lastUpdated = pdtNow.strftime('%A, %B %d, %Y at %I:%M %p') + ' PST'
 
-print(lastUpdated)
-
+with open('log.txt', 'a') as f:
+    f.write('Updated: ' + lastUpdated + '\n' + 'Errors:\n' + nasa_error + nifc_error + rm_origins_error + '\n\n')
+    
 with open('./last-updated.txt', 'w') as f:
     f.write(lastUpdated)
 
