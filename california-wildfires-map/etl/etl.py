@@ -9,6 +9,11 @@ import os
 import datetime
 import pytz
 
+
+utcNow = pytz.utc.localize(datetime.datetime.utcnow())
+pdtNow = utcNow.astimezone(pytz.timezone("America/Los_Angeles"))
+lastUpdated = pdtNow.strftime('%A, %B %d, %Y at %I:%M %p') + ' PST'
+
 urls = {
     "nasa_modis": "https://firms.modaps.eosdis.nasa.gov/usfs/api/kml_fire_footprints/usa_contiguous_and_hawaii/24h/c6.1/FirespotArea_usa_contiguous_and_hawaii_c6.1_24h.kmz",
     "nasa_viirs_snpp": "https://firms.modaps.eosdis.nasa.gov/usfs/api/kml_fire_footprints/usa_contiguous_and_hawaii/24h/suomi-npp-viirs-c2/FirespotArea_usa_contiguous_and_hawaii_suomi-npp-viirs-c2_24h.kmz",
@@ -26,13 +31,17 @@ for k,v in urls.items():
         try:
             i.to_file("./gis/" + k + ".geojson", driver="GeoJSON")
         except:
-            nasa_error = 'There was an error trying to write a NASA .kmz file to .geojson in the gis folder, etl.py Line 27\n'
+            nasa_error = lastUpdated + '\nError: There was an error trying to write a NASA .kmz file to .geojson in the gis folder, etl.py Line 32\n'
+            with open('log.txt', 'a') as f:
+                f.write(nasa_error)
     else:
         i = gpd.read_file(v)
         try:
             i.to_file("./gis/" + k + ".geojson", driver="GeoJSON")
         except:
-            nifc_error = 'There was an error trying to write a NIFC .geojson file to .geojson in the gis folder, etl.py Line 33\n'
+            nifc_error = lastUpdated + '\nError: There was an error trying to write a NIFC .geojson file to .geojson in the gis folder, etl.py Line 40\n'
+            with open('log.txt', 'a') as f:
+                f.write(nifc_error)
 
 gdf_noaa20 = gpd.read_file("./gis/nasa_viirs_noaa20.geojson")
 gdf_snpp = gpd.read_file("./gis/nasa_viirs_snpp.geojson")
@@ -54,8 +63,10 @@ gdf_nifc_point_no_poly = gdf_nifc_point[gdf_nifc_point.IrwinID.isin(gdf_nifc_pol
 try:
     gdf_nifc_point_no_poly.to_file("./gis/nifc_points.geojson", driver="GeoJSON")
 except:
-    rm_origins_error = 'There was an error when trying to remove the NIFC origins that don\'t have a corresponding polygon. etl.py Line 55\n'
-
+    rm_origins_error = lastUpdated + '\nError: There was an error when trying to remove the NIFC origins that don\'t have a corresponding polygon. etl.py Line 64\n'
+    with open('log.txt', 'a') as f:
+                f.write(rm_origins_error)
+    
 # Upload polygon data to Mapbox
 token = os.environ.get('TOKEN')
 os.environ['MAPBOX_ACCESS_TOKEN'] = token
@@ -65,12 +76,8 @@ mb = ['mapbox', 'upload', 'calnewsroom.nifc-polygons-tp', './gis/nifc_polygons.m
 subprocess.Popen(tp, stdout=subprocess.PIPE).wait()
 subprocess.Popen(mb, stdout=subprocess.PIPE)
 
-utcNow = pytz.utc.localize(datetime.datetime.utcnow())
-pdtNow = utcNow.astimezone(pytz.timezone("America/Los_Angeles"))
-lastUpdated = pdtNow.strftime('%A, %B %d, %Y at %I:%M %p') + ' PST'
-
 with open('log.txt', 'a') as f:
-    f.write('Updated: ' + lastUpdated + '\n' + 'Errors:\n' + nasa_error + nifc_error + rm_origins_error + '\n\n')
+    f.write('\nUpdated: ' + lastUpdated + '\n')
     
 with open('./last-updated.txt', 'w') as f:
     f.write(lastUpdated)
