@@ -36,3 +36,7 @@ Thursday, July 28, 2022 at 11:38 PM PST
 Error: There was an error trying to write a NASA .kmz file to .geojson in the gis folder, etl.py Line 32
 
 Updated: Thursday, July 28, 2022 at 11:38 PM PST
+Friday, July 29, 2022 at 12:27 AM PST
+Error: There was an error trying to write a NASA .kmz file to .geojson in the gis folder, etl.py Line 32
+
+Updated: Friday, July 29, 2022 at 12:27 AM PST
