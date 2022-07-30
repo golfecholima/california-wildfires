@@ -112,3 +112,7 @@ Friday, July 29, 2022 at 04:29 PM PST
 Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 64
 
 Updated: Friday, July 29, 2022 at 04:29 PM PST
+Friday, July 29, 2022 at 07:36 PM PST
+Error: There was an error trying to write a NASA .kmz file to .geojson in the gis folder, etl.py Line 32
+
+Updated: Friday, July 29, 2022 at 07:36 PM PST
