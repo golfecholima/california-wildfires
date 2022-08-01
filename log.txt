@@ -356,3 +356,9 @@ Monday, August 01, 2022 at 10:37 AM PST
 Error: There was an error trying to write a NASA .kmz file to .geojson in the gis folder, etl.py Line 32
 
 Updated: Monday, August 01, 2022 at 10:37 AM PST
+Monday, August 01, 2022 at 11:41 AM PST
+Error: There was an error trying to write a NASA .kmz file to .geojson in the gis folder, etl.py Line 32
+Monday, August 01, 2022 at 11:41 AM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 64
+
+Updated: Monday, August 01, 2022 at 11:41 AM PST
