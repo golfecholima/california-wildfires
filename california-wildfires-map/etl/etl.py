@@ -26,22 +26,32 @@ gpd.io.file.fiona.drvsupport.supported_drivers['KML'] = 'rw'
 
 #Go throught the dictionary and export each source as geojson
 for k,v in urls.items():
+    utcNow = pytz.utc.localize(datetime.datetime.utcnow())
     if v.endswith(".kmz"):
-        i = gpd.read_file(v, driver='KML')
+        try:
+            i = gpd.read_file(v, driver='KML')
+        except:
+            kml_read_error = lastUpdated + ' — Error: Read kml file ' + k + ' failed.\n'
+            with open('log.txt', 'a') as f:
+                f.write(kml_read_error)
         try:
             i.to_file("./gis/" + k + ".geojson", driver="GeoJSON")
         except:
-            nasa_error = lastUpdated + '\nError: There was an error trying to write a NASA .kmz file to .geojson in the gis folder, etl.py Line 32\n'
+            to_geojson_error = lastUpdated + ' — Error: Saving ' + k + 'to geojson file failed.\n'
             with open('log.txt', 'a') as f:
-                f.write(nasa_error)
+                f.write(to_geojson_error)
     else:
-        i = gpd.read_file(v)
+        try:
+            i = gpd.read_file(v)
+        except:
+            gpd_read_error = lastUpdated + ' — Error: Read gpd file ' + k + ' failed.\n'
+            with open('log.txt', 'a') as f:
+                f.write(gpd_read_error)
         try:
             i.to_file("./gis/" + k + ".geojson", driver="GeoJSON")
         except:
-            nifc_error = lastUpdated + '\nError: There was an error trying to write a NIFC .geojson file to .geojson in the gis folder, etl.py Line 40\n'
             with open('log.txt', 'a') as f:
-                f.write(nifc_error)
+                f.write(to_geojson_error)
 
 gdf_noaa20 = gpd.read_file("./gis/nasa_viirs_noaa20.geojson")
 gdf_snpp = gpd.read_file("./gis/nasa_viirs_snpp.geojson")
@@ -59,6 +69,7 @@ gdf_nifc_poly_10_plus = gdf_nifc_poly[gdf_nifc_poly.irwin_DailyAcres >= 10]
 gdf_nifc_poly_10_plus.to_file("./gis/nifc_polygons.geojson", driver="GeoJSON")
 
 # Remove NIFC origins that don't have a corresponding polygon
+utcNow = pytz.utc.localize(datetime.datetime.utcnow())
 gdf_nifc_point_no_poly = gdf_nifc_point[gdf_nifc_point.IrwinID.isin(gdf_nifc_poly_10_plus.irwin_IrwinID)]
 try:
     gdf_nifc_point_no_poly.to_file("./gis/nifc_points.geojson", driver="GeoJSON")
@@ -76,8 +87,9 @@ mb = ['mapbox', 'upload', 'calnewsroom.nifc-polygons-tp', './gis/nifc_polygons.m
 subprocess.Popen(tp, stdout=subprocess.PIPE).wait()
 subprocess.Popen(mb, stdout=subprocess.PIPE)
 
+utcNow = pytz.utc.localize(datetime.datetime.utcnow())
 with open('log.txt', 'a') as f:
-    f.write('\nUpdated: ' + lastUpdated + '\n')
+    f.write('Updated: ' + lastUpdated + '\n\n')
     
 with open('./last-updated.txt', 'w') as f:
     f.write(lastUpdated)
