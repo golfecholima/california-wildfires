@@ -434,3 +434,11 @@ Tuesday, August 02, 2022 at 05:59 AM PST
 Error: There was an error trying to write a NASA .kmz file to .geojson in the gis folder, etl.py Line 32
 
 Updated: Tuesday, August 02, 2022 at 05:59 AM PST
+Tuesday, August 02, 2022 at 12:24 PM PST — Error: Read kml file nasa_modis failed.
+Tuesday, August 02, 2022 at 12:24 PM PST — Error: Saving nasa_modisto geojson file failed.
+Tuesday, August 02, 2022 at 12:24 PM PST — Error: Read kml file nasa_viirs_snpp failed.
+Tuesday, August 02, 2022 at 12:24 PM PST — Error: Saving nasa_viirs_snppto geojson file failed.
+Tuesday, August 02, 2022 at 12:24 PM PST — Error: Read kml file nasa_viirs_noaa20 failed.
+Tuesday, August 02, 2022 at 12:24 PM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
+Updated: Tuesday, August 02, 2022 at 12:24 PM PST
+
