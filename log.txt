@@ -652,3 +652,6 @@ Friday, August 05, 2022 at 09:49 AM PST
 Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 64
 Updated: Friday, August 05, 2022 at 09:49 AM PST
 
+Friday, August 05, 2022 at 10:37 AM PST — Error: Saving nasa_viirs_snppto geojson file failed.
+Updated: Friday, August 05, 2022 at 10:37 AM PST
+
