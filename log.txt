@@ -920,3 +920,13 @@ Tuesday, August 09, 2022 at 12:28 AM PST — Error: Read kml file nasa_viirs_no
 Tuesday, August 09, 2022 at 12:28 AM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
 Updated: Tuesday, August 09, 2022 at 12:28 AM PST
 
+Tuesday, August 09, 2022 at 01:35 AM PST — Error: Read kml file nasa_modis failed.
+Tuesday, August 09, 2022 at 01:35 AM PST — Error: Saving nasa_modisto geojson file failed.
+Tuesday, August 09, 2022 at 01:35 AM PST — Error: Read kml file nasa_viirs_snpp failed.
+Tuesday, August 09, 2022 at 01:35 AM PST — Error: Saving nasa_viirs_snppto geojson file failed.
+Tuesday, August 09, 2022 at 01:35 AM PST — Error: Read kml file nasa_viirs_noaa20 failed.
+Tuesday, August 09, 2022 at 01:35 AM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
+Tuesday, August 09, 2022 at 01:35 AM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 64
+Updated: Tuesday, August 09, 2022 at 01:35 AM PST
+
