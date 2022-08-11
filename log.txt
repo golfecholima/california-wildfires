@@ -1104,3 +1104,11 @@ Wednesday, August 10, 2022 at 11:36 PM PST — Error: Read kml file nasa_viirs_
 Wednesday, August 10, 2022 at 11:36 PM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
 Updated: Wednesday, August 10, 2022 at 11:36 PM PST
 
+Thursday, August 11, 2022 at 12:30 AM PST — Error: Read kml file nasa_modis failed.
+Thursday, August 11, 2022 at 12:30 AM PST — Error: Saving nasa_modisto geojson file failed.
+Thursday, August 11, 2022 at 12:30 AM PST — Error: Read kml file nasa_viirs_snpp failed.
+Thursday, August 11, 2022 at 12:30 AM PST — Error: Saving nasa_viirs_snppto geojson file failed.
+Thursday, August 11, 2022 at 12:30 AM PST — Error: Read kml file nasa_viirs_noaa20 failed.
+Thursday, August 11, 2022 at 12:30 AM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
+Updated: Thursday, August 11, 2022 at 12:30 AM PST
+
