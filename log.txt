@@ -1263,3 +1263,8 @@ Updated: Saturday, August 13, 2022 at 03:29 PM PST
 
 Updated: Saturday, August 13, 2022 at 04:28 PM PST
 
+Saturday, August 13, 2022 at 07:38 PM PST — Error: Read kml file nasa_viirs_noaa20 failed.
+Saturday, August 13, 2022 at 07:38 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 64
+Updated: Saturday, August 13, 2022 at 07:38 PM PST
+
