@@ -2012,3 +2012,7 @@ Updated: Saturday, August 27, 2022 at 12:24 PM PST
 
 Updated: Saturday, August 27, 2022 at 01:30 PM PST
 
+Saturday, August 27, 2022 at 02:28 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 64
+Updated: Saturday, August 27, 2022 at 02:28 PM PST
+
