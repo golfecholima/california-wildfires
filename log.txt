@@ -2388,3 +2388,7 @@ Updated: Sunday, September 04, 2022 at 10:32 AM PST
 
 Updated: Sunday, September 04, 2022 at 11:36 AM PST
 
+Sunday, September 04, 2022 at 12:24 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 64
+Updated: Sunday, September 04, 2022 at 12:24 PM PST
+
