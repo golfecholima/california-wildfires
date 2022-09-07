@@ -1,3 +1,4 @@
+var pymChild = new pym.Child();
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2FsbmV3c3Jvb20iLCJhIjoiY2ttYzhwZ2wyMDVobTJwbXhiaG81bXpzdSJ9.xnkn2BlbVZvFfGukyV_-0g';
 
 const bounds = [
@@ -176,26 +177,35 @@ map.on('load', () => {
 // MOBILE FIRST ZOOM LEVELS/CENTERS
 
 var width = window.innerWidth;
+var href = window.location.href;
+
+var rez = /(?<=#)(.*?)(?=\/)/gm;
+var relat = /(?<=\/)(\d*\.\d*)(?=\/)/gm;
+var relon = /-.*$/gm;
+
+var z = href.match(rez);
+var lat = href.match(relat);
+var lon = href.match(relon);
 
 if (width >= '1000') {
     setTimeout(function () {
         map.flyTo({
-            zoom: 5.5,
-            center: [-122.914, 37.695]
+            zoom: z,
+            center: [lon, lat]
         }), 5000
     })
 } else if (width >= '750') {
     setTimeout(function () {
         map.flyTo({
-            zoom: 4.5,
-            center: [-122.914, 35.695]
+            zoom: z,
+            center: [lon, lat]
         }), 5000
     })
 } else {
     setTimeout(function () {
         map.flyTo({
-            zoom: 4.5,
-            center: [-120.914, 35.695]
+            zoom: z,
+            center: [lon, lat]
         }), 5000
     })
 }
