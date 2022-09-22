@@ -9,10 +9,10 @@ const bounds = [
 const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/calnewsroom/cktxg3xf3026p18o15i0p1z9v', // style URL
-    center: [-119.5788478538649, 36.498509688945572], // starting position [lng, lat]
+    center: [-119.58, 36.5], // starting position [lng, lat]
     maxZoom: 10, // sets max zoom
     minZoom: 2, // sets min zoom
-    zoom: 2, // starting zoom
+    zoom: 5, // starting zoom
     maxBounds: bounds, // restrict panning area
     hash: true // enable custon center/zoom via URL
 });
@@ -25,11 +25,11 @@ map.loadImage('./assets/outline_local_fire_department_black_18dp_2x.png', (error
     map.addImage('fire', image, { sdf: true });
 });
 
-map.loadImage('./assets/pattern.png', (error, image) => {
-    if (error) throw error;
-    // add image to the active style and make it SDF-enabled
-    map.addImage('pattern', image, { sdf: true });
-});
+// map.loadImage('./assets/pattern.png', (error, image) => {
+//     if (error) throw error;
+//     // add image to the active style and make it SDF-enabled
+//     map.addImage('pattern', image, { sdf: true });
+// });
 
 map.on('load', () => {
 
@@ -174,41 +174,27 @@ map.on('load', () => {
 
 });
 
-// MOBILE FIRST ZOOM LEVELS/CENTERS
+// CUSTOM URL BASED ZOOM LEVELS/CENTERS
 
 var width = window.innerWidth;
 var href = window.location.href;
 
-var rez = /(?<=#)(.*?)(?=\/)/gm;
-var relat = /(?<=\/)(\d*\.\d*)(?=\/)/gm;
-var relon = /-.*$/gm;
+var rez = /(?:#)(.*?)(?=\/)/;
+var relat = /\d*\.\d*(?=\/-)/;
+var relon = /-.*$/;
 
-var z = href.match(rez);
-var lat = href.match(relat);
-var lon = href.match(relon);
+var z = rez.exec(href)[1];
+var latitude = relat.exec(href);
+var longitude = relon.exec(href);
 
-if (width >= '1000') {
-    setTimeout(function () {
-        map.flyTo({
-            zoom: z,
-            center: [lon, lat]
-        }), 5000
+var coords = [+longitude[0], +latitude[0]];
+
+setTimeout(function () {
+    map.flyTo({
+        zoom: z,
+        center: coords
     })
-} else if (width >= '750') {
-    setTimeout(function () {
-        map.flyTo({
-            zoom: z,
-            center: [lon, lat]
-        }), 5000
-    })
-} else {
-    setTimeout(function () {
-        map.flyTo({
-            zoom: z,
-            center: [lon, lat]
-        }), 5000
-    })
-}
+}, 5000)
 
 // CONTROLS
 
