@@ -2,7 +2,6 @@
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "Name": "Fire Detection Centroid ", "Description": "<b>Latitude: <\/b> 19.40471<br\/>  <b>Longitude: <\/b> -155.28531<br\/>  <b>Detection Time: <\/b> 2022-10-15 23:31 UTC<br\/>  <b>Sensor: <\/b> Aqua MODIS<br\/> <b>Confidence [0-100%]: <\/b> 50%<br\/>  <b>Day\/Night: <\/b> Day<br\/> <b>Scan: <\/b> 1.62 km<br\/> <b>Track: <\/b> 1.25 km<br\/> <b>FRP: <\/b> 20.93 MW<br\/> <b>Brightness: <\/b> 316.51 K" }, "geometry": { "type": "Point", "coordinates": [ -155.28531, 19.40471, 0.0 ] } },
-{ "type": "Feature", "properties": { "Name": "Fire Detection Centroid ", "Description": "<b>Latitude: <\/b> 19.39364<br\/>  <b>Longitude: <\/b> -155.28302<br\/>  <b>Detection Time: <\/b> 2022-10-15 23:31 UTC<br\/>  <b>Sensor: <\/b> Aqua MODIS<br\/> <b>Confidence [0-100%]: <\/b> 98%<br\/>  <b>Day\/Night: <\/b> Day<br\/> <b>Scan: <\/b> 1.62 km<br\/> <b>Track: <\/b> 1.25 km<br\/> <b>FRP: <\/b> 148.01 MW<br\/> <b>Brightness: <\/b> 356.94 K" }, "geometry": { "type": "Point", "coordinates": [ -155.28302, 19.39364, 0.0 ] } }
+{ "type": "Feature", "properties": { "Name": "Fire Detection Centroid ", "Description": "<b>Latitude: <\/b> 18.93342<br\/>  <b>Longitude: <\/b> -70.3504<br\/>  <b>Detection Time: <\/b> 2022-10-16 06:45 UTC<br\/>  <b>Sensor: <\/b> Aqua MODIS<br\/> <b>Confidence [0-100%]: <\/b> 75%<br\/>  <b>Day\/Night: <\/b> Night<br\/> <b>Scan: <\/b> 1.2 km<br\/> <b>Track: <\/b> 1.1 km<br\/> <b>FRP: <\/b> 30.76 MW<br\/> <b>Brightness: <\/b> 325.76 K" }, "geometry": { "type": "Point", "coordinates": [ -70.3504, 18.93342, 0.0 ] } }
 ]
 }
