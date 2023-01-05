@@ -8009,3 +8009,7 @@ Updated: Wednesday, January 04, 2023 at 03:25 PM PST
 
 Updated: Wednesday, January 04, 2023 at 05:52 PM PST
 
+Wednesday, January 04, 2023 at 06:48 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 64
+Updated: Wednesday, January 04, 2023 at 06:48 PM PST
+
