@@ -8433,3 +8433,7 @@ Updated: Friday, January 13, 2023 at 12:26 PM PST
 
 Updated: Friday, January 13, 2023 at 01:22 PM PST
 
+Friday, January 13, 2023 at 02:26 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 64
+Updated: Friday, January 13, 2023 at 02:26 PM PST
+
