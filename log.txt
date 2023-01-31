@@ -9366,3 +9366,9 @@ Monday, January 30, 2023 at 06:25 AM PST
 Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 64
 Updated: Monday, January 30, 2023 at 06:25 AM PST
 
+Tuesday, January 31, 2023 at 03:25 PM PST
+Error: There was an error trying to write gdf_nifc_poly_10_plus. Often an empty dataframe. etl.py Line 70
+Tuesday, January 31, 2023 at 03:25 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
+Updated: Tuesday, January 31, 2023 at 03:25 PM PST
+
