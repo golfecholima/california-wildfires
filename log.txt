@@ -10511,3 +10511,7 @@ Thursday, February 23, 2023 at 02:28 PM PST
 Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
 Updated: Thursday, February 23, 2023 at 02:28 PM PST
 
+Thursday, February 23, 2023 at 03:27 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
+Updated: Thursday, February 23, 2023 at 03:27 PM PST
+
