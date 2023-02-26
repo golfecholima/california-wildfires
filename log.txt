@@ -10634,3 +10634,7 @@ Updated: Saturday, February 25, 2023 at 09:26 PM PST
 Saturday, February 25, 2023 at 10:31 PM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
 Updated: Saturday, February 25, 2023 at 10:31 PM PST
 
+Saturday, February 25, 2023 at 11:23 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
+Updated: Saturday, February 25, 2023 at 11:23 PM PST
+
