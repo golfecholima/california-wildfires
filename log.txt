@@ -10662,3 +10662,8 @@ Sunday, February 26, 2023 at 05:29 AM PST
 Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
 Updated: Sunday, February 26, 2023 at 05:29 AM PST
 
+Sunday, February 26, 2023 at 06:24 AM PST — Error: Saving nasa_modisto geojson file failed.
+Sunday, February 26, 2023 at 06:24 AM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
+Updated: Sunday, February 26, 2023 at 06:24 AM PST
+
