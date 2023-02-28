@@ -2,7 +2,6 @@
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "Name": "Fire Detection Centroid ", "Description": "<b>Latitude: <\/b> 18.46165<br\/>  <b>Longitude: <\/b> -66.73779<br\/>  <b>Detection Time: <\/b> 2023-02-28 05:18 UTC<br\/>  <b>Sensor: <\/b> Suomi-NPP VIIRS<br\/> <b>Confidence: <\/b> Nominal<br\/>  <b>Day\/Night: <\/b> Night<br\/> <b>Scan: <\/b> 0.5 km<br\/> <b>Track: <\/b> 0.7 km<br\/> <b>FRP: <\/b> 1.32 MW<br\/> <b>Brightness: <\/b> 309.55 K" }, "geometry": { "type": "Point", "coordinates": [ -66.73779, 18.46165, 0.0 ] } },
-{ "type": "Feature", "properties": { "Name": "Fire Detection Centroid ", "Description": "<b>Latitude: <\/b> 20.73916<br\/>  <b>Longitude: <\/b> -156.43257<br\/>  <b>Detection Time: <\/b> 2023-02-27 23:35 UTC<br\/>  <b>Sensor: <\/b> Suomi-NPP VIIRS<br\/> <b>Confidence: <\/b> Nominal<br\/>  <b>Day\/Night: <\/b> Day<br\/> <b>Scan: <\/b> 0.4 km<br\/> <b>Track: <\/b> 0.37 km<br\/> <b>FRP: <\/b> 1.6 MW<br\/> <b>Brightness: <\/b> 336.42 K" }, "geometry": { "type": "Point", "coordinates": [ -156.43257, 20.73916, 0.0 ] } }
+{ "type": "Feature", "properties": { "Name": "Fire Detection Centroid ", "Description": "<b>Latitude: <\/b> 18.46165<br\/>  <b>Longitude: <\/b> -66.73779<br\/>  <b>Detection Time: <\/b> 2023-02-28 05:18 UTC<br\/>  <b>Sensor: <\/b> Suomi-NPP VIIRS<br\/> <b>Confidence: <\/b> Nominal<br\/>  <b>Day\/Night: <\/b> Night<br\/> <b>Scan: <\/b> 0.5 km<br\/> <b>Track: <\/b> 0.7 km<br\/> <b>FRP: <\/b> 1.32 MW<br\/> <b>Brightness: <\/b> 309.55 K" }, "geometry": { "type": "Point", "coordinates": [ -66.73779, 18.46165, 0.0 ] } }
 ]
 }
