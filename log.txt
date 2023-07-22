@@ -17384,3 +17384,7 @@ Updated: Saturday, July 22, 2023 at 09:27 AM PST
 Saturday, July 22, 2023 at 10:23 AM PST — Error: Saving nasa_viirs_snppto geojson file failed.
 Updated: Saturday, July 22, 2023 at 10:23 AM PST
 
+Saturday, July 22, 2023 at 11:25 AM PST — Error: Read kml file nasa_modis failed.
+Saturday, July 22, 2023 at 11:25 AM PST — Error: Saving nasa_modisto geojson file failed.
+Updated: Saturday, July 22, 2023 at 11:25 AM PST
+
