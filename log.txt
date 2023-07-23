@@ -17410,3 +17410,6 @@ Saturday, July 22, 2023 at 04:21 PM PST — Error: Read kml file nasa_viirs_noa
 Saturday, July 22, 2023 at 04:21 PM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
 Updated: Saturday, July 22, 2023 at 04:21 PM PST
 
+Saturday, July 22, 2023 at 06:52 PM PST — Error: Saving nasa_modisto geojson file failed.
+Updated: Saturday, July 22, 2023 at 06:52 PM PST
+
