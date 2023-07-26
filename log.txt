@@ -17576,3 +17576,7 @@ Tuesday, July 25, 2023 at 07:41 PM PST — Error: Saving nasa_modisto geojson f
 Tuesday, July 25, 2023 at 07:41 PM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
 Updated: Tuesday, July 25, 2023 at 07:41 PM PST
 
+Tuesday, July 25, 2023 at 08:22 PM PST — Error: Saving nasa_viirs_snppto geojson file failed.
+Tuesday, July 25, 2023 at 08:22 PM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
+Updated: Tuesday, July 25, 2023 at 08:22 PM PST
+
