@@ -18520,3 +18520,11 @@ Monday, August 14, 2023 at 09:27 AM PST — Error: Read kml file nasa_viirs_noa
 Monday, August 14, 2023 at 09:27 AM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
 Updated: Monday, August 14, 2023 at 09:27 AM PST
 
+Monday, August 14, 2023 at 10:24 AM PST — Error: Read kml file nasa_modis failed.
+Monday, August 14, 2023 at 10:24 AM PST — Error: Saving nasa_modisto geojson file failed.
+Monday, August 14, 2023 at 10:24 AM PST — Error: Read kml file nasa_viirs_snpp failed.
+Monday, August 14, 2023 at 10:24 AM PST — Error: Saving nasa_viirs_snppto geojson file failed.
+Monday, August 14, 2023 at 10:24 AM PST — Error: Read kml file nasa_viirs_noaa20 failed.
+Monday, August 14, 2023 at 10:24 AM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
+Updated: Monday, August 14, 2023 at 10:24 AM PST
+
