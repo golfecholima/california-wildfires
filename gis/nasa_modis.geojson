@@ -2,6 +2,6 @@
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "Name": "Fire Detection Centroid ", "Description": "<b>Latitude: <\/b> 33.42109<br\/>  <b>Longitude: <\/b> -110.86245<br\/>  <b>Detection Time: <\/b> 2024-01-14 09:38 UTC<br\/>  <b>Sensor: <\/b> Aqua MODIS<br\/> <b>Confidence [0-100%]: <\/b> 47%<br\/>  <b>Day\/Night: <\/b> Night<br\/> <b>Scan: <\/b> 1.03 km<br\/> <b>Track: <\/b> 1.01 km<br\/> <b>FRP: <\/b> 10.73 MW<br\/> <b>Brightness: <\/b> 302.19 K" }, "geometry": { "type": "Point", "coordinates": [ -110.86245, 33.42109, 0.0 ] } }
+{ "type": "Feature", "properties": { "Name": "Fire Detection Centroid ", "Description": "<b>Latitude: <\/b> 31.13376<br\/>  <b>Longitude: <\/b> -89.34642<br\/>  <b>Detection Time: <\/b> 2024-01-14 15:52 UTC<br\/>  <b>Sensor: <\/b> Terra MODIS<br\/> <b>Confidence [0-100%]: <\/b> 40%<br\/>  <b>Day\/Night: <\/b> Day<br\/> <b>Scan: <\/b> 1.57 km<br\/> <b>Track: <\/b> 1.23 km<br\/> <b>FRP: <\/b> 12.12 MW<br\/> <b>Brightness: <\/b> 301.36 K" }, "geometry": { "type": "Point", "coordinates": [ -89.34642, 31.13376, 0.0 ] } }
 ]
 }
