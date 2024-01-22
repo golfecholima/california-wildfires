@@ -26290,3 +26290,9 @@ Sunday, January 21, 2024 at 05:37 PM PST
 Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
 Updated: Sunday, January 21, 2024 at 05:37 PM PST
 
+Sunday, January 21, 2024 at 06:39 PM PST
+Error: There was an error trying to write gdf_nifc_poly_10_plus. Often an empty dataframe. etl.py Line 70
+Sunday, January 21, 2024 at 06:39 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
+Updated: Sunday, January 21, 2024 at 06:39 PM PST
+
