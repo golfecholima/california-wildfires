@@ -2,7 +2,6 @@
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "Name": "Fire Detection Centroid ", "Description": "<b>Latitude: <\/b> 45.94439<br\/>  <b>Longitude: <\/b> -111.48051<br\/>  <b>Detection Time: <\/b> 2024-01-31 10:45 UTC<br\/>  <b>Sensor: <\/b> NOAA-20 VIIRS<br\/> <b>Confidence: <\/b> Nominal<br\/>  <b>Day\/Night: <\/b> Night<br\/> <b>Scan: <\/b> 0.66 km<br\/> <b>Track: <\/b> 0.73 km<br\/> <b>FRP: <\/b> 1.83 MW<br\/> <b>Brightness: <\/b> 299.09 K" }, "geometry": { "type": "Point", "coordinates": [ -111.48051, 45.94439, 0.0 ] } },
-{ "type": "Feature", "properties": { "Name": "Fire Detection Centroid ", "Description": "<b>Latitude: <\/b> 45.80691<br\/>  <b>Longitude: <\/b> -111.58063<br\/>  <b>Detection Time: <\/b> 2024-01-31 10:43 UTC<br\/>  <b>Sensor: <\/b> NOAA-20 VIIRS<br\/> <b>Confidence: <\/b> Nominal<br\/>  <b>Day\/Night: <\/b> Night<br\/> <b>Scan: <\/b> 0.7 km<br\/> <b>Track: <\/b> 0.7 km<br\/> <b>FRP: <\/b> 1.82 MW<br\/> <b>Brightness: <\/b> 299.09 K" }, "geometry": { "type": "Point", "coordinates": [ -111.58063, 45.80691, 0.0 ] } }
+{ "type": "Feature", "properties": { "Name": "Fire Detection Centroid ", "Description": "<b>Latitude: <\/b> 40.41265<br\/>  <b>Longitude: <\/b> -79.86372<br\/>  <b>Detection Time: <\/b> 2024-01-31 17:05 UTC<br\/>  <b>Sensor: <\/b> NOAA-20 VIIRS<br\/> <b>Confidence: <\/b> Nominal<br\/>  <b>Day\/Night: <\/b> Day<br\/> <b>Scan: <\/b> 0.7 km<br\/> <b>Track: <\/b> 0.7 km<br\/> <b>FRP: <\/b> 4.93 MW<br\/> <b>Brightness: <\/b> 337.42 K" }, "geometry": { "type": "Point", "coordinates": [ -79.86372, 40.41265, 0.0 ] } }
 ]
 }
