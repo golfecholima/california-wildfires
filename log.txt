@@ -30013,3 +30013,8 @@ Monday, March 25, 2024 at 09:25 PM PST
 Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
 Updated: Monday, March 25, 2024 at 09:25 PM PST
 
+Monday, March 25, 2024 at 10:24 PM PST — Error: Saving nasa_viirs_noaa20to geojson file failed.
+Monday, March 25, 2024 at 10:24 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
+Updated: Monday, March 25, 2024 at 10:24 PM PST
+
