@@ -30603,3 +30603,7 @@ Monday, April 01, 2024 at 06:22 AM PST
 Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
 Updated: Monday, April 01, 2024 at 06:22 AM PST
 
+Monday, April 01, 2024 at 07:24 AM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
+Updated: Monday, April 01, 2024 at 07:24 AM PST
+
