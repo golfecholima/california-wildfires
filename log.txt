@@ -31123,3 +31123,7 @@ Saturday, April 06, 2024 at 11:25 PM PST
 Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
 Updated: Saturday, April 06, 2024 at 11:25 PM PST
 
+Sunday, April 07, 2024 at 12:19 AM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
+Updated: Sunday, April 07, 2024 at 12:19 AM PST
+
