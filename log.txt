@@ -35312,3 +35312,8 @@ Wednesday, May 22, 2024 at 02:24 PM PST
 Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
 Updated: Wednesday, May 22, 2024 at 02:24 PM PST
 
+Wednesday, May 22, 2024 at 03:25 PM PST — Error: Read kml file nasa_viirs_noaa20 failed.
+Wednesday, May 22, 2024 at 03:25 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
+Updated: Wednesday, May 22, 2024 at 03:25 PM PST
+
