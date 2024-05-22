@@ -35210,3 +35210,10 @@ Tuesday, May 21, 2024 at 06:33 PM PST
 Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
 Updated: Tuesday, May 21, 2024 at 06:33 PM PST
 
+Tuesday, May 21, 2024 at 07:34 PM PST — Error: Read kml file nasa_modis failed.
+Tuesday, May 21, 2024 at 07:34 PM PST — Error: Saving nasa_modisto geojson file failed.
+Tuesday, May 21, 2024 at 07:34 PM PST — Error: Read kml file nasa_viirs_noaa20 failed.
+Tuesday, May 21, 2024 at 07:34 PM PST
+Error: There was an error when trying to remove the NIFC origins that don't have a corresponding polygon. etl.py Line 80
+Updated: Tuesday, May 21, 2024 at 07:34 PM PST
+
