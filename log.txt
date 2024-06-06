@@ -36428,3 +36428,6 @@ Updated: Thursday, June 06, 2024 at 08:26 AM PST
 
 Updated: Thursday, June 06, 2024 at 09:28 AM PST
 
+Thursday, June 06, 2024 at 10:27 AM PST — Error: Read kml file nasa_viirs_snpp failed.
+Updated: Thursday, June 06, 2024 at 10:27 AM PST
+
