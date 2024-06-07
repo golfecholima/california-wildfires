@@ -36500,3 +36500,7 @@ Friday, June 07, 2024 at 01:24 PM PST — Error: Read kml file nasa_modis faile
 Friday, June 07, 2024 at 01:24 PM PST — Error: Saving nasa_modisto geojson file failed.
 Updated: Friday, June 07, 2024 at 01:24 PM PST
 
+Friday, June 07, 2024 at 02:24 PM PST — Error: Read kml file nasa_viirs_snpp failed.
+Friday, June 07, 2024 at 02:24 PM PST — Error: Read kml file nasa_viirs_noaa20 failed.
+Updated: Friday, June 07, 2024 at 02:24 PM PST
+
